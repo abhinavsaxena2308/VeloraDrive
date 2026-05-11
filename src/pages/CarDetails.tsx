@@ -1,143 +1,159 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Star, Zap, Clock, Shield, Users, Fuel, Gauge, ArrowLeft } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Star, Gauge, Zap, Fuel, Users, Settings2, ArrowLeft, Shield, Check } from 'lucide-react';
+import { getCarById, cars } from '../data/cars';
+import CarCard from '../components/ui/CarCard';
 
 const CarDetails: React.FC = () => {
-  useParams<{ id: string }>();
+  const { id } = useParams<{ id: string }>();
+  const car = getCarById(Number(id));
 
-  // Mock data for a single car
-  const car = {
-    id: 1,
-    name: 'Porsche 911 GT3',
-    type: 'Sports',
-    price: 450,
-    rating: 4.9,
-    reviews: 124,
-    description: 'The Porsche 911 GT3 is a high-performance homologation model of the Porsche 911 sports car. It is a line of high-performance models, which began with the 911 Carrera RS in 1973.',
-    specs: [
-      { label: '0-100 km/h', value: '3.4s', icon: Gauge },
-      { label: 'Power', value: '502 HP', icon: Zap },
-      { label: 'Top Speed', value: '318 km/h', icon: Gauge },
-      { label: 'Fuel Type', value: 'Premium', icon: Fuel },
-      { label: 'Seats', value: '2 Seats', icon: Users },
-      { label: 'Transmission', value: 'Automatic', icon: Clock },
-    ]
-  };
+  if (!car) {
+    return (
+      <div className="page-container flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-4xl font-heading font-bold italic mb-4">Car Not Found</h1>
+          <Link to="/cars" className="btn-primary">Back to Fleet</Link>
+        </div>
+      </div>
+    );
+  }
+
+  const related = cars.filter(c => c.type === car.type && c.id !== car.id).slice(0, 3);
+  const specIcons = [Gauge, Zap, Gauge, Fuel, Users, Settings2];
+
+  const allSpecs = [
+    ...car.specs,
+    { label: 'Fuel Type', value: car.fuel },
+    { label: 'Seats', value: `${car.seats} Seats` },
+    { label: 'Transmission', value: car.transmission },
+  ];
 
   return (
-    <div className="pt-32 pb-20 bg-deep-black min-h-screen">
-      <div className="container mx-auto px-6">
-        <Link to="/cars" className="flex items-center gap-2 text-secondary hover:text-cta transition-colors mb-12 group uppercase tracking-[0.2em] text-[10px] font-bold">
-          <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Fleet
+    <div className="page-container">
+      <div className="container mx-auto px-6 md:px-10">
+        {/* Back link */}
+        <Link to="/cars" className="inline-flex items-center gap-2 text-white/40 hover:text-cta transition-colors mb-10 group text-[10px] uppercase tracking-[0.2em] font-semibold cursor-pointer">
+          <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> Back to Fleet
         </Link>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
-          {/* Left Column: Image & Details */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          {/* Left — Image & Details */}
           <div className="lg:col-span-2">
-            <div className="glass-card aspect-video mb-16 flex items-center justify-center italic text-white/5 text-8xl font-heading">
-              {car.name}
-            </div>
+            {/* Hero Image */}
+            <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} className="aspect-video rounded-2xl overflow-hidden mb-10">
+              <img src={car.image} alt={car.name} className="w-full h-full object-cover" />
+            </motion.div>
 
-            <div className="mb-16">
-              <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-6">
-                <div>
-                  <h1 className="text-5xl md:text-7xl mb-4 font-heading font-bold italic">{car.name}</h1>
-                  <div className="flex items-center gap-4">
-                    <span className="bg-cta text-white text-[10px] font-bold px-4 py-1 rounded-full uppercase tracking-[0.2em]">
-                      {car.type}
-                    </span>
-                    <div className="flex items-center gap-1 text-cta">
-                      <Star size={16} fill="currentColor" />
-                      <span className="text-white font-bold text-sm ml-1">{car.rating}</span>
-                      <span className="text-secondary text-sm ml-1">({car.reviews} Reviews)</span>
-                    </div>
+            {/* Title block */}
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 gap-4">
+              <div>
+                <h1 className="text-4xl md:text-6xl font-heading font-bold italic mb-3">{car.name}</h1>
+                <div className="flex items-center gap-4">
+                  <span className="badge-cta">{car.type}</span>
+                  <div className="flex items-center gap-1.5">
+                    <Star size={14} className="text-cta fill-cta" />
+                    <span className="text-white font-semibold text-sm">{car.rating}</span>
+                    <span className="text-white/30 text-sm">({car.reviews} reviews)</span>
                   </div>
                 </div>
               </div>
-              <p className="text-secondary text-xl font-light leading-relaxed max-w-3xl">
-                {car.description}
-              </p>
             </div>
 
-            <div className="mb-16">
-              <h2 className="text-2xl font-heading font-bold mb-10 italic">TECHNICAL <span className="text-cta">SPECIFICATIONS</span></h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-                {car.specs.map((spec, index) => (
-                  <div key={index} className="glass-card p-8 flex flex-col items-center text-center group hover:border-cta/20 transition-colors">
-                    <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center text-cta mb-6 group-hover:scale-110 transition-transform">
-                      <spec.icon size={28} />
+            <p className="text-white/45 text-lg font-light leading-relaxed mb-12 max-w-3xl">{car.description}</p>
+
+            {/* Specs */}
+            <h2 className="text-xl font-heading font-bold mb-8 italic uppercase">Technical <span className="text-cta">Specifications</span></h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
+              {allSpecs.map((spec, i) => {
+                const Icon = specIcons[i % specIcons.length];
+                return (
+                  <div key={i} className="glass-card p-6 flex flex-col items-center text-center group hover:border-cta/20">
+                    <div className="w-12 h-12 bg-white/[0.04] rounded-xl flex items-center justify-center text-cta mb-4 group-hover:scale-110 transition-transform">
+                      <Icon size={22} />
                     </div>
-                    <span className="text-secondary text-[10px] uppercase tracking-[0.2em] font-bold mb-2">{spec.label}</span>
-                    <span className="text-white font-bold text-lg">{spec.value}</span>
+                    <span className="text-[9px] uppercase tracking-[0.2em] text-white/35 font-semibold mb-1">{spec.label}</span>
+                    <span className="text-white font-bold">{spec.value}</span>
                   </div>
-                ))}
-              </div>
+                );
+              })}
+            </div>
+
+            {/* Features */}
+            <h2 className="text-xl font-heading font-bold mb-6 italic uppercase">Key <span className="text-cta">Features</span></h2>
+            <div className="grid grid-cols-2 gap-3 mb-12">
+              {car.features.map((f, i) => (
+                <div key={i} className="flex items-center gap-3 py-3 px-4 rounded-xl bg-white/[0.02] border border-white/[0.04]">
+                  <div className="w-5 h-5 rounded-full bg-cta/10 flex items-center justify-center text-cta flex-shrink-0">
+                    <Check size={10} strokeWidth={3} />
+                  </div>
+                  <span className="text-sm text-white/60">{f}</span>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Right Column: Sticky Booking Card */}
+          {/* Right — Sticky Booking Card */}
           <div className="lg:col-span-1">
-            <div className="glass-card p-10 sticky top-32 border-cta/10 shadow-2xl">
-              <div className="flex justify-between items-center mb-10 pb-10 border-b border-white/5">
+            <div className="glass-card p-8 sticky top-28 border-cta/10">
+              <div className="flex justify-between items-center mb-8 pb-8 border-b border-white/[0.06]">
                 <div>
-                  <span className="text-5xl font-bold text-white">${car.price}</span>
-                  <span className="text-secondary text-[10px] uppercase tracking-widest block font-bold mt-1">per day</span>
+                  <span className="text-3xl font-bold text-white">₹{car.price.toLocaleString()}</span>
+                  <span className="block text-[9px] uppercase tracking-widest text-white/30 font-semibold mt-1">per day</span>
                 </div>
-                <div className="w-14 h-14 bg-cta/10 rounded-2xl flex items-center justify-center text-cta">
-                  <Shield size={28} />
+                <div className="w-12 h-12 bg-cta/10 rounded-xl flex items-center justify-center text-cta">
+                  <Shield size={24} />
                 </div>
               </div>
 
-              <div className="space-y-8 mb-12">
-                <div className="space-y-3">
-                  <label className="text-[10px] uppercase tracking-widest text-secondary font-black">Pick-up Location</label>
-                  <select className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-sm text-white focus:outline-none focus:border-cta transition-colors">
-                    <option>Delhi NCR</option>
-                    <option>Mumbai</option>
+              <div className="space-y-5 mb-8">
+                <div>
+                  <label htmlFor="detail-city" className="input-label">Pick-up Location</label>
+                  <select id="detail-city" className="input-field cursor-pointer">
+                    <option>Delhi NCR</option><option>Mumbai</option><option>Bangalore</option><option>Hyderabad</option>
                   </select>
                 </div>
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="space-y-3">
-                    <label className="text-[10px] uppercase tracking-widest text-secondary font-black">Pick-up</label>
-                    <input type="date" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-xs text-white focus:outline-none focus:border-cta" />
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="detail-pickup" className="input-label">Pick-up</label>
+                    <input id="detail-pickup" type="date" className="input-field cursor-pointer" />
                   </div>
-                  <div className="space-y-3">
-                    <label className="text-[10px] uppercase tracking-widest text-secondary font-black">Return</label>
-                    <input type="date" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-xs text-white focus:outline-none focus:border-cta" />
+                  <div>
+                    <label htmlFor="detail-return" className="input-label">Return</label>
+                    <input id="detail-return" type="date" className="input-field cursor-pointer" />
                   </div>
                 </div>
               </div>
 
-              <button className="btn-primary w-full py-5 mb-8">
-                Reserve This Machine
-              </button>
-              
-              <div className="space-y-5">
-                {[
-                  'Free cancellation up to 24h',
-                  'No hidden service charges',
-                  'Concierge delivery included'
-                ].map((text, i) => (
-                  <div key={i} className="flex items-center gap-3 text-[11px] text-secondary font-medium">
-                    <div className="w-5 h-5 rounded-full bg-cta/10 flex items-center justify-center text-cta">
-                      <Check size={10} />
+              <button className="btn-primary w-full py-4 mb-6">Reserve This Machine</button>
+
+              <div className="space-y-3">
+                {['Free cancellation up to 24h', 'No hidden charges', 'Doorstep delivery included'].map((t, i) => (
+                  <div key={i} className="flex items-center gap-2.5 text-[11px] text-white/40">
+                    <div className="w-4 h-4 rounded-full bg-cta/10 flex items-center justify-center text-cta flex-shrink-0">
+                      <Check size={8} strokeWidth={3} />
                     </div>
-                    {text}
+                    {t}
                   </div>
                 ))}
               </div>
             </div>
           </div>
         </div>
+
+        {/* Related Cars */}
+        {related.length > 0 && (
+          <div className="mt-20 pt-16 border-t border-white/[0.04]">
+            <h2 className="text-2xl font-heading font-bold italic mb-10 uppercase">Similar <span className="text-cta">Vehicles</span></h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {related.map((c, i) => <CarCard key={c.id} car={c} index={i} />)}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
 };
-
-const Check = ({ size, className }: { size: number, className?: string }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <polyline points="20 6 9 17 4 12" />
-  </svg>
-);
 
 export default CarDetails;

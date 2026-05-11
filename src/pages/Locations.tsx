@@ -1,79 +1,53 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, ChevronRight, Car } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { MapPin } from 'lucide-react';
+import SectionHeader from '../components/shared/SectionHeader';
 
-const Locations: React.FC = () => {
-  const cities = [
-    { name: 'Delhi', cars: 124, image: 'https://images.unsplash.com/photo-1587474260584-1f20d42b624a?auto=format&fit=crop&q=80&w=800' },
-    { name: 'Mumbai', cars: 98, image: 'https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?auto=format&fit=crop&q=80&w=800' },
-    { name: 'Bangalore', cars: 76, image: 'https://images.unsplash.com/photo-1596761361400-e353c274f2ee?auto=format&fit=crop&q=80&w=800' },
-    { name: 'Gurgaon', cars: 45, image: 'https://images.unsplash.com/photo-1618037041793-19597799f2df?auto=format&fit=crop&q=80&w=800' },
-    { name: 'Noida', cars: 32, image: 'https://images.unsplash.com/photo-1594220202927-463e260909c3?auto=format&fit=crop&q=80&w=800' },
-    { name: 'Chandigarh', cars: 28, image: 'https://images.unsplash.com/photo-1622300022231-64906f0e086f?auto=format&fit=crop&q=80&w=800' },
-  ];
+const locations = [
+  { city: 'Delhi NCR', cars: 45, image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&q=80&w=600', active: true },
+  { city: 'Mumbai', cars: 38, image: 'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&q=80&w=600', active: true },
+  { city: 'Bangalore', cars: 32, image: 'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&q=80&w=600', active: true },
+  { city: 'Hyderabad', cars: 25, image: 'https://images.unsplash.com/photo-1572883454114-efb8ff4bfd60?auto=format&fit=crop&q=80&w=600', active: true },
+  { city: 'Chennai', cars: 20, image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&q=80&w=600', active: true },
+  { city: 'Pune', cars: 22, image: 'https://images.unsplash.com/photo-1625046508019-da69b107eac1?auto=format&fit=crop&q=80&w=600', active: true },
+  { city: 'Jaipur', cars: 18, image: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&q=80&w=600', active: true },
+  { city: 'Goa', cars: 15, image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80&w=600', active: true },
+  { city: 'Chandigarh', cars: 12, image: 'https://images.unsplash.com/photo-1590766940554-634ac1098f42?auto=format&fit=crop&q=80&w=600', active: true },
+  { city: 'Kolkata', cars: 0, image: 'https://images.unsplash.com/photo-1558431382-27e303142255?auto=format&fit=crop&q=80&w=600', active: false },
+  { city: 'Ahmedabad', cars: 0, image: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&q=80&w=600', active: false },
+  { city: 'Lucknow', cars: 0, image: 'https://images.unsplash.com/photo-1584806749948-697891c67821?auto=format&fit=crop&q=80&w=600', active: false },
+];
 
-  return (
-    <div className="pt-32 pb-20">
-      <div className="container mx-auto px-6">
-        <div className="mb-16">
-          <h1 className="text-4xl md:text-6xl mb-4">OUR <span className="text-primary">LOCATIONS</span></h1>
-          <p className="text-secondary max-w-2xl text-lg">
-            Find Velora Drive in the most prominent hubs. We provide seamless 
-            pick-up and drop-off services across all major cities.
-          </p>
-        </div>
+const Locations: React.FC = () => (
+  <div className="page-container">
+    <div className="container mx-auto px-6 md:px-10">
+      <SectionHeader eyebrow="Locations" title="CITIES WE" highlight="SERVE" description="Pick up your dream car from any of our locations across India." align="center" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-          {cities.map((city, index) => (
-            <motion.div
-              key={city.name}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="relative h-80 rounded-3xl overflow-hidden group cursor-pointer"
-            >
-              <img 
-                src={city.image} 
-                alt={city.name}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-              <div className="absolute bottom-8 left-8 right-8 flex justify-between items-end">
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-2">{city.name}</h3>
-                  <div className="flex items-center gap-2 text-secondary text-sm">
-                    <Car size={16} className="text-primary" />
-                    <span>{city.cars} Cars Available</span>
-                  </div>
-                </div>
-                <Link to="/cars" className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white shadow-glow translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all">
-                  <ChevronRight size={24} />
-                </Link>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {locations.map((loc, i) => (
+          <motion.div key={loc.city} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}
+            className={`glass-card overflow-hidden group relative ${!loc.active ? 'opacity-50' : ''}`}>
+            <div className="h-44 overflow-hidden relative">
+              <img src={loc.image} alt={loc.city} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+              {!loc.active && (
+                <div className="absolute top-4 right-4 badge-neutral">Coming Soon</div>
+              )}
+            </div>
+            <div className="p-6 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <MapPin size={16} className="text-cta" />
+                <span className="font-heading font-bold italic text-lg">{loc.city}</span>
               </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Map UI Mockup */}
-        <div className="glass-card p-12 text-center">
-          <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-8 text-primary shadow-glow">
-            <MapPin size={40} />
-          </div>
-          <h2 className="text-3xl font-bold mb-6">Can't find your city?</h2>
-          <p className="text-secondary max-w-xl mx-auto mb-10">
-            We are rapidly expanding our network. If you need a luxury vehicle in a 
-            location not listed here, contact our concierge team and we'll arrange 
-            a custom delivery for you.
-          </p>
-          <button className="btn-primary">
-            Request Custom Delivery
-          </button>
-        </div>
+              {loc.active && (
+                <span className="text-[10px] uppercase tracking-wider text-white/30 font-semibold">{loc.cars} cars</span>
+              )}
+            </div>
+          </motion.div>
+        ))}
       </div>
     </div>
-  );
-};
+  </div>
+);
 
 export default Locations;

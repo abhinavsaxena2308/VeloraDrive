@@ -1,103 +1,71 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Check, HelpCircle } from 'lucide-react';
+import { Check, ChevronDown, ChevronUp } from 'lucide-react';
+import SectionHeader from '../components/shared/SectionHeader';
+
+const plans = [
+  { name: 'Daily Rental', price: '₹2,500', period: '/day', desc: 'Perfect for short trips and special occasions.', features: ['200 km limit', 'Basic insurance', '24/7 roadside assist', 'Standard pickup'], recommended: false },
+  { name: 'Weekly Package', price: '₹12,000', period: '/week', desc: 'Extended luxury for business or vacation.', features: ['1,200 km limit', 'Premium insurance', 'Priority support', 'Complimentary wash', 'Doorstep delivery'], recommended: true },
+  { name: 'Monthly Elite', price: '₹35,000', period: '/month', desc: 'Ultimate flexibility without long-term commitment.', features: ['Unlimited km', 'Full protection', 'Dedicated concierge', 'Vehicle swap 1x/month', 'Free chauffeur (2 days)'], recommended: false },
+];
+
+const faqs = [
+  { q: 'What documents are required for rental?', a: 'You need a valid driving license, Aadhaar card, and a credit/debit card for the security deposit.' },
+  { q: 'Is there a security deposit involved?', a: 'Yes, a refundable security deposit is collected at the time of pickup. Amount varies by vehicle category.' },
+  { q: 'Can I take the car across state borders?', a: 'Yes, interstate travel is allowed for most vehicles. Please inform us at the time of booking.' },
+  { q: 'What happens if I exceed the kilometer limit?', a: 'Additional kilometers are charged at ₹8-15/km depending on the vehicle category.' },
+];
 
 const Pricing: React.FC = () => {
-  const plans = [
-    {
-      name: 'Daily Rental',
-      price: 'Starts at $250',
-      desc: 'Perfect for short trips and special occasions.',
-      features: ['200 km limit', 'Basic insurance', '24/7 roadside assistance', 'Standard pickup'],
-      recommended: false
-    },
-    {
-      name: 'Weekly Package',
-      price: 'Starts at $1500',
-      desc: 'Extended luxury for your business or vacation needs.',
-      features: ['1200 km limit', 'Premium insurance', 'Priority support', 'Complimentary car wash', 'Doorstep delivery'],
-      recommended: true
-    },
-    {
-      name: 'Monthly Elite',
-      price: 'Starts at $5000',
-      desc: 'The ultimate flexibility without long-term commitment.',
-      features: ['Unlimited km', 'Full protection cover', 'Dedicated concierge', 'Vehicle swap once/month', 'Free chauffeur (2 days)'],
-      recommended: false
-    }
-  ];
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <div className="pt-32 pb-20 bg-deep-black min-h-screen">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-24">
-          <h1 className="text-5xl md:text-8xl font-heading font-bold mb-6 italic uppercase tracking-tight">TRANSPARENT <span className="text-cta">PRICING</span></h1>
-          <p className="text-secondary max-w-2xl mx-auto text-xl font-light">
-            Choose a plan that fits your lifestyle. No hidden fees, no complicated 
-            contracts. Just pure luxury at your fingertips.
-          </p>
-        </div>
+    <div className="page-container">
+      <div className="container mx-auto px-6 md:px-10">
+        <SectionHeader eyebrow="Pricing" title="TRANSPARENT" highlight="PRICING" description="Choose a plan that fits your lifestyle. No hidden fees, no complicated contracts." align="center" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-32">
-          {plans.map((plan, index) => (
-            <motion.div
-              key={plan.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className={`glass-card p-12 flex flex-col relative overflow-hidden transition-all duration-500 hover:-translate-y-4 ${
-                plan.recommended ? 'border-cta/30 ring-1 ring-cta/20' : 'border-white/5'
-              }`}
-            >
-              {plan.recommended && (
-                <div className="absolute top-8 right-8 bg-cta text-white text-[10px] font-bold px-4 py-1 rounded-full uppercase tracking-[0.2em]">
-                  Best Value
-                </div>
-              )}
-              
-              <h3 className="text-3xl font-heading font-bold mb-4 italic">{plan.name}</h3>
-              <p className="text-secondary text-sm mb-10 h-12 leading-relaxed">{plan.desc}</p>
-              
-              <div className="mb-12">
-                <span className="text-4xl font-bold text-white tracking-tight">{plan.price}</span>
+        {/* Pricing Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+          {plans.map((plan, i) => (
+            <motion.div key={plan.name} initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+              className={`glass-card p-10 flex flex-col relative overflow-hidden hover:-translate-y-2 transition-transform duration-500 ${plan.recommended ? 'border-cta/30 ring-1 ring-cta/15' : ''}`}>
+              {plan.recommended && <span className="absolute top-6 right-6 badge-cta">Best Value</span>}
+              <h3 className="text-2xl font-heading font-bold italic mb-2">{plan.name}</h3>
+              <p className="text-white/40 text-sm mb-8 h-10">{plan.desc}</p>
+              <div className="mb-8">
+                <span className="text-3xl font-bold text-white">{plan.price}</span>
+                <span className="text-white/30 text-sm ml-1">{plan.period}</span>
               </div>
-
-              <div className="space-y-5 mb-12 flex-1">
-                {plan.features.map((feature, i) => (
-                  <div key={i} className="flex items-center gap-4">
-                    <div className="w-6 h-6 rounded-full bg-cta/10 flex items-center justify-center text-cta shrink-0">
-                      <Check size={14} />
-                    </div>
-                    <span className="text-sm text-secondary font-medium">{feature}</span>
+              <div className="space-y-4 mb-10 flex-1">
+                {plan.features.map((f, j) => (
+                  <div key={j} className="flex items-center gap-3">
+                    <div className="w-5 h-5 rounded-full bg-cta/10 flex items-center justify-center text-cta flex-shrink-0"><Check size={10} strokeWidth={3} /></div>
+                    <span className="text-sm text-white/50">{f}</span>
                   </div>
                 ))}
               </div>
-
-              <button className={`w-full py-5 rounded-2xl font-bold transition-all uppercase tracking-widest text-[10px] ${
-                plan.recommended 
-                  ? 'bg-cta text-white shadow-glow hover:bg-red-700' 
-                  : 'bg-white/5 border border-white/10 text-white hover:bg-white/10'
-              }`}>
-                Select This Plan
+              <button className={`w-full py-4 rounded-xl font-semibold transition-all uppercase tracking-[0.15em] text-[10px] cursor-pointer ${plan.recommended ? 'bg-cta text-white shadow-glow hover:bg-red-700' : 'bg-white/[0.04] border border-white/[0.06] text-white hover:bg-white/[0.08]'}`}>
+                Select Plan
               </button>
             </motion.div>
           ))}
         </div>
 
-        {/* FAQ Preview */}
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-heading font-bold mb-16 text-center italic uppercase tracking-widest">COMMON <span className="text-cta">QUESTIONS</span></h2>
-          <div className="space-y-6">
-            {[
-              "What documents are required for rental?",
-              "Is there a security deposit involved?",
-              "Can I take the car across state borders?",
-              "What happens if I exceed the kilometer limit?"
-            ].map((q, i) => (
-              <div key={i} className="glass-card p-8 flex justify-between items-center group cursor-pointer hover:border-cta/20 transition-all">
-                <span className="font-bold text-white text-lg">{q}</span>
-                <HelpCircle size={24} className="text-secondary group-hover:text-cta transition-colors" />
+        {/* FAQ */}
+        <div className="max-w-3xl mx-auto">
+          <SectionHeader eyebrow="FAQ" title="COMMON" highlight="QUESTIONS" align="center" />
+          <div className="space-y-3">
+            {faqs.map((faq, i) => (
+              <div key={i} className="glass-card overflow-hidden" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
+                <div className="p-6 flex justify-between items-center">
+                  <span className="font-semibold text-white text-sm">{faq.q}</span>
+                  {openFaq === i ? <ChevronUp size={18} className="text-cta" /> : <ChevronDown size={18} className="text-white/30" />}
+                </div>
+                {openFaq === i && (
+                  <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="px-6 pb-6">
+                    <p className="text-white/40 text-sm leading-relaxed">{faq.a}</p>
+                  </motion.div>
+                )}
               </div>
             ))}
           </div>

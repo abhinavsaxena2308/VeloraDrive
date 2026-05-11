@@ -1,99 +1,58 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Mail, Lock, User } from 'lucide-react';
-import {FcGoogle} from 'react-icons/fc';
-import { FaGithub } from 'react-icons/fa'
+import { motion } from 'framer-motion';
 
-const Signup: React.FC = () => {
-  return (
-    <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-black px-6">
-      {/* Background Decor */}
-      <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_20%,_#3B82F6_0%,_transparent_40%)] opacity-20"></div>
-      <div className="absolute bottom-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_80%,_#3B82F6_0%,_transparent_40%)] opacity-20"></div>
+const Signup: React.FC = () => (
+  <div className="min-h-screen bg-deep-black flex">
+    {/* Left Brand Panel */}
+    <div className="hidden lg:flex lg:w-1/2 relative items-center justify-center overflow-hidden">
+      <img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf0a3?auto=format&fit=crop&q=80&w=1200" alt="Supercar" className="absolute inset-0 w-full h-full object-cover opacity-30" />
+      <div className="absolute inset-0 bg-gradient-to-r from-deep-black/80 to-deep-black/40" />
+      <div className="relative z-10 p-16">
+        <Link to="/" className="flex items-center gap-3 mb-8">
+          <div className="w-10 h-10 bg-cta rounded-lg flex items-center justify-center shadow-glow">
+            <span className="text-white font-black text-xl">V</span>
+          </div>
+          <span className="text-white font-heading font-bold text-2xl tracking-tight">VELORA</span>
+        </Link>
+        <h2 className="text-4xl font-heading font-bold italic text-white leading-tight mb-4">Start Your<br /><span className="text-gradient">Journey Today.</span></h2>
+        <p className="text-white/40 text-sm max-w-sm">Create your account and unlock access to India's most exclusive self-drive fleet.</p>
+      </div>
+    </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="glass-card p-10 md:p-12 w-full max-w-md relative z-10"
-      >
-        <div className="text-center mb-10">
-          <Link to="/" className="inline-flex items-center gap-2 mb-6 group">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center shadow-glow group-hover:scale-110 transition-transform">
-              <span className="text-white font-bold text-xl">V</span>
-            </div>
-            <span className="text-white font-heading font-bold text-2xl tracking-tighter">
-              VELORA <span className="text-primary">DRIVE</span>
-            </span>
+    {/* Right Form */}
+    <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-md">
+        <div className="lg:hidden mb-8">
+          <Link to="/" className="flex items-center gap-2 mb-6">
+            <div className="w-8 h-8 bg-cta rounded-lg flex items-center justify-center"><span className="text-white font-black text-lg">V</span></div>
+            <span className="text-white font-heading font-bold text-lg">VELORA</span>
           </Link>
-          <h2 className="text-2xl font-bold text-white mb-2">Create Account</h2>
-          <p className="text-secondary text-sm">Join Velora Drive for a premium experience</p>
         </div>
+        <h1 className="text-3xl font-heading font-bold italic mb-2">Create Account</h1>
+        <p className="text-white/40 text-sm mb-8">Join Velora Drive in under a minute.</p>
 
-        <form className="space-y-6 mb-8">
-          <div className="space-y-2">
-            <label className="text-xs uppercase tracking-widest text-secondary font-bold">Full Name</label>
-            <div className="relative">
-              <User className="absolute left-4 top-1/2 -translate-y-1/2 text-secondary" size={18} />
-              <input 
-                type="text" 
-                className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-4 text-white focus:outline-none focus:border-primary transition-colors" 
-                placeholder="John Doe" 
-              />
-            </div>
+        <form className="space-y-5">
+          <div className="grid grid-cols-2 gap-4">
+            <div><label htmlFor="s-fname" className="input-label">First Name</label><input id="s-fname" type="text" className="input-field" placeholder="John" /></div>
+            <div><label htmlFor="s-lname" className="input-label">Last Name</label><input id="s-lname" type="text" className="input-field" placeholder="Doe" /></div>
           </div>
-          <div className="space-y-2">
-            <label className="text-xs uppercase tracking-widest text-secondary font-bold">Email Address</label>
-            <div className="relative">
-              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-secondary" size={18} />
-              <input 
-                type="email" 
-                className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-4 text-white focus:outline-none focus:border-primary transition-colors" 
-                placeholder="john@example.com" 
-              />
-            </div>
-          </div>
-          <div className="space-y-2">
-            <label className="text-xs uppercase tracking-widest text-secondary font-bold">Password</label>
-            <div className="relative">
-              <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-secondary" size={18} />
-              <input 
-                type="password" 
-                className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-4 text-white focus:outline-none focus:border-primary transition-colors" 
-                placeholder="••••••••" 
-              />
-            </div>
-          </div>
-          <button type="submit" className="btn-primary w-full py-4 shadow-primary/20">
-            Create Account
-          </button>
+          <div><label htmlFor="s-email" className="input-label">Email</label><input id="s-email" type="email" className="input-field" placeholder="you@example.com" /></div>
+          <div><label htmlFor="s-phone" className="input-label">Phone</label><input id="s-phone" type="tel" className="input-field" placeholder="+91 98765 43210" /></div>
+          <div><label htmlFor="s-pass" className="input-label">Password</label><input id="s-pass" type="password" className="input-field" placeholder="Min 8 characters" /></div>
+          <label className="flex items-start gap-2 cursor-pointer">
+            <input type="checkbox" className="rounded border-white/10 bg-white/5 mt-0.5 cursor-pointer" />
+            <span className="text-xs text-white/40">I agree to the <a href="#" className="text-cta hover:underline">Terms of Service</a> and <a href="#" className="text-cta hover:underline">Privacy Policy</a>.</span>
+          </label>
+          <button type="submit" className="btn-primary w-full py-4">Create Account</button>
         </form>
 
-        <div className="relative mb-8">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-white/5"></div>
-          </div>
-          <div className="relative flex justify-center text-xs uppercase tracking-widest">
-            <span className="bg-matte-black px-4 text-secondary">Or continue with</span>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 gap-4 mb-8">
-          <button className="bg-white/5 border border-white/10 rounded-xl py-3 flex items-center justify-center gap-2 text-white hover:bg-white/10 transition-colors">
-            <FcGoogle size={18} /> Google
-          </button>
-          <button className="bg-white/5 border border-white/10 rounded-xl py-3 flex items-center justify-center gap-2 text-white hover:bg-white/10 transition-colors">
-            <FaGithub size={18} /> Github
-          </button>
-        </div>
-
-        <p className="text-center text-sm text-secondary">
-          Already have an account?{' '}
-          <Link to="/login" className="text-primary font-bold hover:underline">Sign In</Link>
+        <p className="text-center text-sm text-white/30 mt-8">
+          Already have an account? <Link to="/login" className="text-cta hover:underline font-semibold cursor-pointer">Sign In</Link>
         </p>
       </motion.div>
     </div>
-  );
-};
+  </div>
+);
 
 export default Signup;
