@@ -22,7 +22,7 @@ const Cars: React.FC = () => {
     : cars.filter(car => car.type === activeCategory);
 
   return (
-    <div className="pt-40 pb-20 bg-deep-black min-h-screen">
+    <div className="pt-32 pb-20 bg-deep-black min-h-screen">
       <div className="container mx-auto px-6">
         {/* Header */}
         <div className="mb-16">

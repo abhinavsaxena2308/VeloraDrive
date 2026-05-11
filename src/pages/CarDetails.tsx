@@ -25,7 +25,7 @@ const CarDetails: React.FC = () => {
   };
 
   return (
-    <div className="pt-40 pb-20 bg-deep-black min-h-screen">
+    <div className="pt-32 pb-20 bg-deep-black min-h-screen">
       <div className="container mx-auto px-6">
         <Link to="/cars" className="flex items-center gap-2 text-secondary hover:text-cta transition-colors mb-12 group uppercase tracking-[0.2em] text-[10px] font-bold">
           <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Fleet

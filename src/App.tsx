@@ -36,6 +36,7 @@ function App() {
   return (
     <HelmetProvider>
       <Router>
+        <div className="noise-overlay" />
         <CustomCursor />
         <AppRouter />
         <WhatsAppButton />

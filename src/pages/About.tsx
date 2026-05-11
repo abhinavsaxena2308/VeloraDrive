@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const About: React.FC = () => {
   return (
-    <div className="pt-40 pb-20 bg-deep-black min-h-screen">
+    <div className="pt-32 pb-20 bg-deep-black min-h-screen">
       <div className="container mx-auto px-6">
         <div className="mb-20">
           <h1 className="text-5xl md:text-8xl font-heading font-bold mb-10 italic uppercase tracking-tight">OUR <span className="text-cta">STORY</span></h1>

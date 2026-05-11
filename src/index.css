@@ -58,7 +58,7 @@
   }
 
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-secondary to-white;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-cta to-white bg-[length:200%_auto] animate-gradient-flow;
   }
 
   .section-padding {
@@ -66,9 +66,36 @@
   }
 }
 
+@keyframes gradient-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient-flow {
+  animation: gradient-flow 6s linear infinite;
+}
+
 /* Custom Utilities */
 .mask-radial {
   mask-image: radial-gradient(circle, black, transparent 80%);
+}
+
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: "";
+  opacity: 0.05;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+}
+
+.shadow-glow-blue {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
 }
 
 .no-scrollbar::-webkit-scrollbar {

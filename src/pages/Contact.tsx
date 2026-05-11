@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin, Send, MessageSquare } from 'lucide-react';
 
 const Contact: React.FC = () => {
   return (
-    <div className="pt-40 pb-20 bg-deep-black min-h-screen">
+    <div className="pt-32 pb-20 bg-deep-black min-h-screen">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
           <div>
