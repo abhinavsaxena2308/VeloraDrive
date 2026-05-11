@@ -1,13 +1,13 @@
 import React, { useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ChevronRight, Star, Shield, Zap, Clock, Smartphone, ArrowRight, Play } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ChevronRight, Star, Shield, Zap, Clock, Smartphone, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import ThreeScene from '../components/three/ThreeScene';
+import HeroSection from '../components/sections/HeroSection';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -19,15 +19,6 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Hero content reveal
-      gsap.from('.hero-content > *', {
-        y: 80,
-        opacity: 0,
-        duration: 1.5,
-        stagger: 0.2,
-        ease: 'power4.out',
-      });
-
       // Horizontal scroll for fleet
       if (horizontalRef.current) {
         const sections = gsap.utils.toArray('.horizontal-section');
@@ -69,55 +60,14 @@ const Home: React.FC = () => {
 
   return (
     <div ref={containerRef} className="flex flex-col bg-deep-black overflow-x-hidden">
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center overflow-hidden">
-        <ThreeScene />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black pointer-events-none"></div>
-        
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-5xl hero-content">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-cta/10 border border-cta/20 mb-10"
-            >
-              <span className="w-2 h-2 rounded-full bg-cta animate-pulse shadow-[0_0_10px_#DC2626]"></span>
-              <span className="text-cta text-[10px] font-bold uppercase tracking-[0.3em]">Redefining Automotive Luxury</span>
-            </motion.div>
-            <h1 className="text-7xl md:text-[120px] mb-8 leading-[0.9] font-heading font-extrabold tracking-tighter text-white">
-              ELITE <br />
-              <span className="text-gradient">EXPERIENCE.</span>
-            </h1>
-            <p className="text-secondary text-lg md:text-2xl max-w-2xl mb-14 leading-relaxed font-light">
-              Beyond transportation. We provide the keys to the world's most 
-              exclusive driving machines, delivered with white-glove service.
-            </p>
-            <div className="flex flex-wrap gap-8">
-              <Link to="/cars" className="btn-primary min-w-[200px]">
-                Explore Fleet <ArrowRight size={18} />
-              </Link>
-              <button className="flex items-center gap-4 text-white font-bold group">
-                <div className="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all duration-500">
-                  <Play size={20} fill="currentColor" />
-                </div>
-                <span className="uppercase tracking-widest text-[10px]">Watch Film</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Floating Scroll Indicator */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 z-20">
-          <span className="text-[10px] uppercase tracking-[0.4em] text-white/40">Scroll</span>
-          <div className="w-px h-20 bg-gradient-to-b from-cta to-transparent"></div>
-        </div>
-      </section>
+      {/* Premium Hero Section */}
+      <HeroSection />
 
       {/* Bento Grid Features Showcase */}
       <section className="section-padding bg-matte-black relative overflow-hidden">
         <div className="container mx-auto px-6">
           <div className="mb-20 text-center md:text-left">
-            <h2 className="text-5xl md:text-7xl font-heading font-bold mb-6 italic text-white">THE VELORA <span className="text-cta">STANDARD</span></h2>
+            <h2 className="text-5xl md:text-7xl font-heading font-bold mb-6 italic text-white uppercase tracking-tighter">THE VELORA <span className="text-cta">STANDARD</span></h2>
             <p className="text-secondary max-w-xl text-lg font-light">Excellence is not an option, it's our baseline. Discover the details that make every journey extraordinary.</p>
           </div>
 
@@ -128,7 +78,7 @@ const Home: React.FC = () => {
                 <Shield size={32} />
               </div>
               <div className="relative z-10">
-                <h3 className="text-3xl font-bold mb-4">Total Peace of Mind</h3>
+                <h3 className="text-3xl font-bold mb-4 font-heading italic uppercase">Total Peace of Mind</h3>
                 <p className="text-secondary text-sm leading-relaxed max-w-sm">Comprehensive insurance and 24/7 roadside assistance included in every rental package.</p>
               </div>
               <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-cta/5 rounded-full blur-3xl group-hover:bg-cta/10 transition-all duration-700"></div>
@@ -137,7 +87,7 @@ const Home: React.FC = () => {
             {/* Sub Feature 1 */}
             <div className="md:col-span-2 glass-card p-8 flex items-center justify-between bento-item group hover:border-cta/20">
               <div>
-                <h3 className="text-2xl font-bold mb-2">Concierge Delivery</h3>
+                <h3 className="text-2xl font-bold mb-2 font-heading italic uppercase">Concierge Delivery</h3>
                 <p className="text-secondary text-xs">We bring the luxury to your doorstep, wherever you are.</p>
               </div>
               <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:text-cta transition-colors">
@@ -234,7 +184,7 @@ const Home: React.FC = () => {
           <div key={car.id} className="horizontal-section min-w-full h-full flex items-center justify-center px-6 md:px-24">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center w-full max-w-7xl">
               <div className="relative group">
-                <div className="aspect-[16/9] glass-card overflow-hidden flex items-center justify-center italic text-white/5 text-8xl">
+                <div className="aspect-[16/9] glass-card overflow-hidden flex items-center justify-center italic text-white/5 text-8xl font-heading">
                   {car.image}
                 </div>
                 <div className="absolute -top-10 -left-10 text-[200px] font-heading font-black text-white/[0.02] pointer-events-none select-none">
