@@ -4,9 +4,37 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>veloradrive</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Velora Drive | Premium Luxury Car Rental</title>
+    <meta name="description" content="Experience the ultimate luxury with Velora Drive. Premium car rentals in Delhi NCR, Mumbai, and beyond. Futuristic, cinematic, and premium." />
+    <meta name="keywords" content="Luxury Car Rental, Self Drive Cars, Delhi NCR Car Rental, Mumbai Car Rental, Premium Cars" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
+    <!-- Smooth Scroll Support -->
+    <style>
+      html.lenis {
+        height: auto;
+      }
+      .lenis-smooth {
+        scroll-behavior: auto !important;
+      }
+      .lenis-smooth [data-lenis-prevent] {
+        overscroll-behavior: contain;
+      }
+      .lenis-stopped {
+        overflow: hidden;
+      }
+      .lenis-scrolling iframe {
+        pointer-events: none;
+      }
+    </style>
   </head>
-  <body>
+  <body class="bg-black text-white antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
