@@ -30,7 +30,7 @@ const About: React.FC = () => (
 
         <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
           className="aspect-[4/5] rounded-2xl overflow-hidden relative">
-          <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=800" alt="Luxury car" className="w-full h-full object-cover" />
+          <img src="/src/assets/car images/13.jpg" alt="Luxury car" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-tr from-cta/10 to-transparent" />
         </motion.div>
       </div>

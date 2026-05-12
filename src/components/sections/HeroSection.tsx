@@ -7,12 +7,12 @@ import TrustBadges from '../shared/TrustBadges';
 
 // ─── Car Images for the vertical carousel ─────────────────────────────────────
 const CAR_IMAGES = [
-  { name: 'Porsche 911', url: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=800' },
-  { name: 'Lamborghini', url: 'https://images.unsplash.com/photo-1525609004556-c46c7d6cf0a3?auto=format&fit=crop&q=80&w=800' },
-  { name: 'Mercedes S', url: 'https://images.unsplash.com/photo-1555529731-4c947233002b?auto=format&fit=crop&q=80&w=800' },
-  { name: 'Audi RS7', url: 'https://images.unsplash.com/photo-1606152424101-ad2f914550ef?auto=format&fit=crop&q=80&w=800' },
-  { name: 'Range Rover', url: 'https://images.unsplash.com/photo-1606611013016-969c19ba27bb?auto=format&fit=crop&q=80&w=800' },
-  { name: 'BMW M4', url: 'https://images.unsplash.com/photo-1556189250-72ba954cfc2b?auto=format&fit=crop&q=80&w=800' },
+  { name: 'Porsche 911', url: '/src/assets/car images/1.jpg' },
+  { name: 'Lamborghini', url: '/src/assets/car images/7.jpg' },
+  { name: 'Mercedes S', url: '/src/assets/car images/2.jpg' },
+  { name: 'Audi RS7', url: '/src/assets/car images/6.jpg' },
+  { name: 'Range Rover', url: '/src/assets/car images/3.jpg' },
+  { name: 'BMW M4', url: '/src/assets/car images/4.jpg' },
 ];
 
 const COLUMN_1 = [...CAR_IMAGES, ...CAR_IMAGES];

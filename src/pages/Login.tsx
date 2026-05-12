@@ -6,7 +6,7 @@ const Login: React.FC = () => (
   <div className="min-h-screen bg-background flex">
     {/* Left Brand Panel */}
     <div className="hidden lg:flex lg:w-1/2 relative items-center justify-center overflow-hidden">
-      <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1200" alt="Luxury car" className="absolute inset-0 w-full h-full object-cover opacity-10" />
+      <img src="/src/assets/car images/1.jpg" alt="Luxury car" className="absolute inset-0 w-full h-full object-cover opacity-10" />
       <div className="absolute inset-0 bg-gradient-to-r from-background/90 to-background/50" />
       <div className="relative z-10 p-16">
         <Link to="/" className="flex items-center gap-3 mb-8">
