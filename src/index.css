@@ -4,29 +4,29 @@
   --font-sans: "Jost", ui-sans-serif, system-ui, sans-serif;
   --font-heading: "Bodoni Moda", serif;
 
-  /* ── Color Tokens ── */
+  /* ── Color Tokens (Light Theme) ── */
   --color-primary: #1E293B;
-  --color-secondary: #94A3B8;
+  --color-secondary: #64748B;
   --color-cta: #DC2626;
-  --color-accent: #00BFFF;
-
-  --color-matte-black: #0B0B0B;
-  --color-charcoal: #111111;
-  --color-dark-gray: #1A1A1A;
-  --color-deep-black: #000000;
-  --color-silver: #C0C0C0;
+  --color-accent: #0284C7;
+  
+  --color-background: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-text: #0F172A;
+  --color-text-muted: #64748B;
+  --color-border: #E2E8F0;
 
   /* ── Radius ── */
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
 
   /* ── Shadows ── */
-  --shadow-glow: 0 0 20px rgba(220, 38, 38, 0.4);
-  --shadow-glow-blue: 0 0 20px rgba(0, 191, 255, 0.3);
+  --shadow-glow: 0 0 20px rgba(220, 38, 38, 0.2);
+  --shadow-glow-blue: 0 0 20px rgba(2, 132, 199, 0.15);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
 }
 
 /* ── Google Fonts ── */
@@ -34,40 +34,40 @@
   @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;600;700&family=Jost:wght@300;400;500;600;700&display=swap');
 
   * {
-    @apply border-white/10;
+    @apply border-border;
   }
 
   body {
-    @apply bg-deep-black text-white selection:bg-cta/30 antialiased;
+    @apply bg-background text-text selection:bg-cta/10 selection:text-cta antialiased;
     font-family: var(--font-sans);
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
-    @apply font-bold tracking-tight;
+    @apply font-bold tracking-tight text-primary;
   }
 
   /* Custom scrollbar */
   ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: #0B0B0B; }
-  ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: #555; }
+  ::-webkit-scrollbar-track { background: #F1F5F9; }
+  ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
 }
 
 /* ── Reusable Component Classes ── */
 @layer components {
   /* Glass card */
   .glass-card {
-    @apply bg-white/[0.03] backdrop-blur-2xl border border-white/[0.06] rounded-2xl
-           transition-all duration-300 cursor-pointer;
+    @apply bg-white/70 backdrop-blur-2xl border border-white rounded-2xl
+           shadow-md transition-all duration-300 cursor-pointer;
   }
   .glass-card:hover {
-    @apply border-white/10 bg-white/[0.05];
+    @apply border-cta/10 bg-white/90 shadow-xl;
   }
 
   /* Page container — ensures content clears the fixed navbar */
   .page-container {
-    @apply pt-28 pb-20 bg-deep-black min-h-screen;
+    @apply pt-28 pb-20 bg-background min-h-screen;
   }
 
   /* Section spacing */
@@ -78,45 +78,45 @@
   /* ── Buttons ── */
   .btn-primary {
     @apply bg-cta hover:bg-red-700 text-white px-8 py-4 rounded-xl
-           transition-all duration-300 font-semibold shadow-glow hover:shadow-cta/50
+           transition-all duration-300 font-semibold shadow-glow hover:shadow-cta/30
            active:scale-[0.97] flex items-center justify-center gap-2
            uppercase tracking-[0.15em] text-[11px] cursor-pointer;
   }
 
   .btn-outline {
-    @apply border border-white/10 hover:border-cta/50 hover:bg-cta/5
-           text-white px-8 py-4 rounded-xl transition-all duration-300
+    @apply border border-primary/10 hover:border-cta/50 hover:bg-cta/5
+           text-primary px-8 py-4 rounded-xl transition-all duration-300
            font-semibold active:scale-[0.97] flex items-center justify-center gap-2
            uppercase tracking-[0.15em] text-[11px] cursor-pointer;
   }
 
   .btn-ghost {
-    @apply text-white/60 hover:text-white px-4 py-2 rounded-lg transition-colors
+    @apply text-text-muted hover:text-primary px-4 py-2 rounded-lg transition-colors
            duration-200 text-sm font-medium cursor-pointer;
   }
 
   /* ── Inputs ── */
   .input-field {
-    @apply w-full bg-white/[0.04] border border-white/10 rounded-xl px-4 py-4
-           text-sm text-white placeholder:text-white/25
-           focus:outline-none focus:border-cta/50 focus:bg-white/[0.06]
-           focus:shadow-[0_0_0_3px_rgba(220,38,38,0.08)]
+    @apply w-full bg-white border border-border rounded-xl px-4 py-4
+           text-sm text-text placeholder:text-text/30
+           focus:outline-none focus:border-cta/50 focus:bg-white
+           focus:shadow-[0_0_0_3px_rgba(220,38,38,0.05)]
            transition-all duration-300;
   }
 
   .input-label {
-    @apply text-[10px] uppercase tracking-[0.25em] text-white/40 font-semibold block mb-2;
+    @apply text-[10px] uppercase tracking-[0.25em] text-text/40 font-semibold block mb-2;
   }
 
   /* ── Text utilities ── */
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-cta to-white
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-cta to-primary
            bg-[length:200%_auto];
     animation: gradient-flow 6s linear infinite;
   }
 
   .text-muted {
-    @apply text-white/50;
+    @apply text-text-muted;
   }
 
   /* ── Badge ── */
@@ -127,12 +127,12 @@
   .badge-cta {
     @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full
            text-[9px] uppercase tracking-[0.2em] font-bold
-           bg-cta/15 text-cta border border-cta/20;
+           bg-cta/10 text-cta border border-cta/20;
   }
   .badge-neutral {
     @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full
            text-[9px] uppercase tracking-[0.2em] font-bold
-           bg-white/5 text-white/60 border border-white/10;
+           bg-slate-100 text-slate-600 border border-slate-200;
   }
 
   /* ── Stat card ── */
@@ -140,10 +140,10 @@
     @apply text-center;
   }
   .stat-card .stat-value {
-    @apply block text-3xl lg:text-4xl font-heading font-bold text-white italic leading-none mb-1;
+    @apply block text-3xl lg:text-4xl font-heading font-bold text-primary italic leading-none mb-1;
   }
   .stat-card .stat-label {
-    @apply text-[9px] uppercase tracking-[0.3em] text-white/35 font-semibold;
+    @apply text-[9px] uppercase tracking-[0.3em] text-text-muted font-semibold;
   }
 }
 
@@ -165,7 +165,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.03;
+    opacity: 0.015;
     z-index: 9999;
     pointer-events: none;
     background-image: url("https://grainy-gradients.vercel.app/noise.svg");

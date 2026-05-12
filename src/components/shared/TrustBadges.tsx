@@ -28,7 +28,7 @@ const TrustBadges: React.FC<TrustBadgesProps> = ({ count = 4, className = '' }) 
           className="flex items-center gap-2"
         >
           <badge.icon size={14} className="text-cta flex-shrink-0" />
-          <span className="text-[10px] uppercase tracking-[0.2em] text-white/40 font-semibold">
+          <span className="text-[10px] uppercase tracking-[0.2em] text-text-muted font-semibold">
             {badge.label}
           </span>
         </motion.div>

@@ -32,7 +32,7 @@ const FleetShowcase: React.FC = () => {
   }, []);
 
   return (
-    <section className="bg-deep-black border-t border-white/[0.04]">
+    <section className="bg-background border-t border-border">
       <div className="container mx-auto px-6 md:px-10 pt-24 lg:pt-32">
         <SectionHeader eyebrow="Featured" title="ELITE" highlight="SELECTION" description="Swipe through our most requested masterpieces." />
       </div>
@@ -44,21 +44,21 @@ const FleetShowcase: React.FC = () => {
                 <div className="aspect-[16/10] rounded-2xl overflow-hidden">
                   <img src={car.image} alt={car.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                 </div>
-                <div className="absolute -top-8 -left-8 text-[160px] font-heading font-black text-white/[0.02] pointer-events-none select-none leading-none">
+                <div className="absolute -top-8 -left-8 text-[160px] font-heading font-black text-primary/[0.03] pointer-events-none select-none leading-none">
                   0{i + 1}
                 </div>
               </div>
               <div>
                 <span className="badge-cta mb-6 inline-block">{car.type}</span>
-                <h3 className="text-4xl md:text-6xl font-heading font-bold mb-6 italic">{car.name}</h3>
-                <div className="flex gap-10 mb-8 pb-8 border-b border-white/[0.06]">
+                <h3 className="text-4xl md:text-6xl font-heading font-bold mb-6 italic text-primary">{car.name}</h3>
+                <div className="flex gap-10 mb-8 pb-8 border-b border-border">
                   <div>
-                    <span className="block text-white/40 text-[10px] uppercase tracking-widest mb-1">Daily Rate</span>
-                    <span className="text-2xl font-bold text-white">₹{car.price.toLocaleString()}</span>
+                    <span className="block text-text-muted text-[10px] uppercase tracking-widest mb-1">Daily Rate</span>
+                    <span className="text-2xl font-bold text-primary">₹{car.price.toLocaleString()}</span>
                   </div>
                   <div>
-                    <span className="block text-white/40 text-[10px] uppercase tracking-widest mb-1">Rating</span>
-                    <span className="text-2xl font-bold text-white flex items-center gap-2"><Star size={16} className="text-cta fill-cta" /> {car.rating}</span>
+                    <span className="block text-text-muted text-[10px] uppercase tracking-widest mb-1">Rating</span>
+                    <span className="text-2xl font-bold text-primary flex items-center gap-2"><Star size={16} className="text-cta fill-cta" /> {car.rating}</span>
                   </div>
                 </div>
                 <div className="flex gap-4">

@@ -19,12 +19,12 @@ const Contact: React.FC = () => (
           <div className="space-y-8 mb-12">
             {contactInfo.map((item, i) => (
               <div key={i} className="flex gap-5 group">
-                <div className="w-12 h-12 bg-white/[0.04] border border-white/[0.06] rounded-xl flex items-center justify-center text-cta group-hover:scale-110 transition-transform flex-shrink-0">
+                <div className="w-12 h-12 bg-slate-50 border border-border rounded-xl flex items-center justify-center text-cta group-hover:scale-110 transition-transform flex-shrink-0">
                   <item.icon size={20} />
                 </div>
                 <div>
                   <span className="input-label">{item.label}</span>
-                  <span className="text-white font-semibold text-base block">{item.value}</span>
+                  <span className="text-primary font-semibold text-base block">{item.value}</span>
                 </div>
               </div>
             ))}
@@ -36,8 +36,8 @@ const Contact: React.FC = () => (
               <MessageSquare size={28} />
             </div>
             <div>
-              <h4 className="font-heading font-bold italic text-lg mb-1">WhatsApp Support</h4>
-              <p className="text-white/35 text-xs mb-3">Chat with our concierge for instant help.</p>
+              <h4 className="font-heading font-bold italic text-lg mb-1 text-primary">WhatsApp Support</h4>
+              <p className="text-text-muted/60 text-xs mb-3">Chat with our concierge for instant help.</p>
               <button className="text-green-500 font-semibold flex items-center gap-2 text-[10px] uppercase tracking-[0.15em] cursor-pointer group">
                 Start Chat <Send size={12} className="group-hover:translate-x-1 transition-transform" />
               </button>
@@ -47,7 +47,7 @@ const Contact: React.FC = () => (
 
         {/* Right — Form */}
         <div className="glass-card p-8 lg:p-12">
-          <h3 className="text-2xl font-heading font-bold italic mb-8">Send a <span className="text-cta">Message</span></h3>
+          <h3 className="text-2xl font-heading font-bold italic mb-8 text-primary">Send a <span className="text-cta">Message</span></h3>
           <form className="space-y-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div><label htmlFor="c-fname" className="input-label">First Name</label><input id="c-fname" type="text" className="input-field" placeholder="John" /></div>

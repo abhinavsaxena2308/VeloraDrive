@@ -48,12 +48,12 @@ const VerticalCarousel = ({ images, duration = 35 }: { images: typeof CAR_IMAGES
 // ─── Hero Section ─────────────────────────────────────────────────────────────
 const HeroSection: React.FC = () => {
   return (
-    <section className="relative min-h-screen bg-deep-black flex overflow-hidden">
+    <section className="relative min-h-screen bg-background flex overflow-hidden">
 
       {/* Ambient background blobs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[60%] bg-cta/[0.06] rounded-full blur-[140px]" />
-        <div className="absolute bottom-[-20%] right-[5%] w-[35%] h-[50%] bg-blue-600/[0.04] rounded-full blur-[120px]" />
+        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[60%] bg-cta/[0.03] rounded-full blur-[140px]" />
+        <div className="absolute bottom-[-20%] right-[5%] w-[35%] h-[50%] bg-blue-600/[0.02] rounded-full blur-[120px]" />
       </div>
 
       {/* ═══ LEFT CONTENT — 55% ═══ */}
@@ -77,7 +77,7 @@ const HeroSection: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="font-heading font-extrabold text-white leading-[0.92] tracking-tighter italic mb-5"
+          className="font-heading font-extrabold text-primary leading-[0.92] tracking-tighter italic mb-5"
           style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)' }}
         >
           Rent Premium Cars
@@ -90,7 +90,7 @@ const HeroSection: React.FC = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.25 }}
-          className="text-white/45 text-base lg:text-lg font-light leading-relaxed max-w-lg mb-8"
+          className="text-text-muted text-base lg:text-lg font-light leading-relaxed max-w-lg mb-8"
         >
           Self-drive luxury cars with instant booking, seamless experiences,
           and doorstep delivery. Drive beyond ordinary.
@@ -108,9 +108,9 @@ const HeroSection: React.FC = () => {
       {/* ═══ RIGHT SIDE — Dual Carousels ═══ */}
       <div className="hidden lg:block lg:w-[45%] relative">
         {/* Gradient bleeds */}
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-deep-black to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-deep-black to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-deep-black to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
 
         {/* Two carousel columns */}
         <div className="absolute inset-0 flex gap-4 px-6 py-8 overflow-hidden">
@@ -130,9 +130,9 @@ const HeroSection: React.FC = () => {
         transition={{ delay: 2, duration: 0.6 }}
         className="absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-1.5 z-10 hidden lg:flex"
       >
-        <span className="text-[8px] uppercase tracking-[0.4em] text-white/20 font-semibold">Scroll</span>
+        <span className="text-[8px] uppercase tracking-[0.4em] text-primary/20 font-semibold">Scroll</span>
         <motion.div animate={{ y: [0, 4, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}>
-          <ChevronDown size={14} className="text-white/20" />
+          <ChevronDown size={14} className="text-primary/20" />
         </motion.div>
       </motion.div>
     </section>

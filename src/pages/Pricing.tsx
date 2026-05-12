@@ -30,21 +30,21 @@ const Pricing: React.FC = () => {
             <motion.div key={plan.name} initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
               className={`glass-card p-10 flex flex-col relative overflow-hidden hover:-translate-y-2 transition-transform duration-500 ${plan.recommended ? 'border-cta/30 ring-1 ring-cta/15' : ''}`}>
               {plan.recommended && <span className="absolute top-6 right-6 badge-cta">Best Value</span>}
-              <h3 className="text-2xl font-heading font-bold italic mb-2">{plan.name}</h3>
-              <p className="text-white/40 text-sm mb-8 h-10">{plan.desc}</p>
+              <h3 className="text-2xl font-heading font-bold italic mb-2 text-primary">{plan.name}</h3>
+              <p className="text-text-muted text-sm mb-8 h-10">{plan.desc}</p>
               <div className="mb-8">
-                <span className="text-3xl font-bold text-white">{plan.price}</span>
-                <span className="text-white/30 text-sm ml-1">{plan.period}</span>
+                <span className="text-3xl font-bold text-primary">{plan.price}</span>
+                <span className="text-text-muted/60 text-sm ml-1">{plan.period}</span>
               </div>
               <div className="space-y-4 mb-10 flex-1">
                 {plan.features.map((f, j) => (
                   <div key={j} className="flex items-center gap-3">
                     <div className="w-5 h-5 rounded-full bg-cta/10 flex items-center justify-center text-cta flex-shrink-0"><Check size={10} strokeWidth={3} /></div>
-                    <span className="text-sm text-white/50">{f}</span>
+                    <span className="text-sm text-text-muted">{f}</span>
                   </div>
                 ))}
               </div>
-              <button className={`w-full py-4 rounded-xl font-semibold transition-all uppercase tracking-[0.15em] text-[10px] cursor-pointer ${plan.recommended ? 'bg-cta text-white shadow-glow hover:bg-red-700' : 'bg-white/[0.04] border border-white/[0.06] text-white hover:bg-white/[0.08]'}`}>
+              <button className={`w-full py-4 rounded-xl font-semibold transition-all uppercase tracking-[0.15em] text-[10px] cursor-pointer ${plan.recommended ? 'bg-cta text-white shadow-glow hover:bg-red-700' : 'bg-slate-50 border border-border text-primary hover:bg-slate-100'}`}>
                 Select Plan
               </button>
             </motion.div>
@@ -58,12 +58,12 @@ const Pricing: React.FC = () => {
             {faqs.map((faq, i) => (
               <div key={i} className="glass-card overflow-hidden" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
                 <div className="p-6 flex justify-between items-center">
-                  <span className="font-semibold text-white text-sm">{faq.q}</span>
-                  {openFaq === i ? <ChevronUp size={18} className="text-cta" /> : <ChevronDown size={18} className="text-white/30" />}
+                  <span className="font-semibold text-primary text-sm">{faq.q}</span>
+                  {openFaq === i ? <ChevronUp size={18} className="text-cta" /> : <ChevronDown size={18} className="text-text-muted/40" />}
                 </div>
                 {openFaq === i && (
                   <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="px-6 pb-6">
-                    <p className="text-white/40 text-sm leading-relaxed">{faq.a}</p>
+                    <p className="text-text-muted text-sm leading-relaxed">{faq.a}</p>
                   </motion.div>
                 )}
               </div>

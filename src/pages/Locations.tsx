@@ -37,10 +37,10 @@ const Locations: React.FC = () => (
             <div className="p-6 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <MapPin size={16} className="text-cta" />
-                <span className="font-heading font-bold italic text-lg">{loc.city}</span>
+                <span className="font-heading font-bold italic text-lg text-primary">{loc.city}</span>
               </div>
               {loc.active && (
-                <span className="text-[10px] uppercase tracking-wider text-white/30 font-semibold">{loc.cars} cars</span>
+                <span className="text-[10px] uppercase tracking-wider text-text-muted/60 font-semibold">{loc.cars} cars</span>
               )}
             </div>
           </motion.div>

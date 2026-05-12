@@ -27,7 +27,7 @@ const BookingWidget: React.FC = () => {
       </div>
 
       {/* Booking Form */}
-      <div className="bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-2xl p-6 lg:p-8">
+      <div className="bg-white shadow-xl border border-border rounded-2xl p-6 lg:p-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
 
           {/* Pickup City */}
@@ -36,7 +36,7 @@ const BookingWidget: React.FC = () => {
               Pickup City
             </label>
             <div className="relative">
-              <MapPin size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/25" />
+              <MapPin size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-text-muted/50" />
               <select
                 id="pickup-city"
                 value={pickupCity}
@@ -48,7 +48,7 @@ const BookingWidget: React.FC = () => {
                   <option key={city} value={city}>{city}</option>
                 ))}
               </select>
-              <ChevronDown size={14} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-white/25 pointer-events-none" />
+              <ChevronDown size={14} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-text-muted/50 pointer-events-none" />
             </div>
           </div>
 
@@ -58,7 +58,7 @@ const BookingWidget: React.FC = () => {
               Pickup Date
             </label>
             <div className="relative">
-              <Calendar size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/25" />
+              <Calendar size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-text-muted/50" />
               <input
                 id="pickup-date"
                 type="date"
@@ -75,7 +75,7 @@ const BookingWidget: React.FC = () => {
               Return Date
             </label>
             <div className="relative">
-              <Calendar size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/25" />
+              <Calendar size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-text-muted/50" />
               <input
                 id="return-date"
                 type="date"
@@ -92,7 +92,7 @@ const BookingWidget: React.FC = () => {
               Car Type
             </label>
             <div className="relative">
-              <Car size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/25" />
+              <Car size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-text-muted/50" />
               <select
                 id="car-type"
                 value={carType}
@@ -107,7 +107,7 @@ const BookingWidget: React.FC = () => {
                 <option value="Electric">Electric</option>
                 <option value="Hatchback">Hatchback</option>
               </select>
-              <ChevronDown size={14} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-white/25 pointer-events-none" />
+              <ChevronDown size={14} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-text-muted/50 pointer-events-none" />
             </div>
           </div>
         </div>

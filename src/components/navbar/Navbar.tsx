@@ -32,7 +32,7 @@ const Navbar: React.FC = () => {
     <nav
       className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${
         scrolled
-          ? 'bg-black/90 backdrop-blur-2xl py-3 border-b border-white/[0.06]'
+          ? 'bg-white/90 backdrop-blur-2xl py-3 border-b border-primary/5 shadow-sm'
           : 'bg-transparent py-5'
       }`}
     >
@@ -44,10 +44,10 @@ const Navbar: React.FC = () => {
             <span className="text-white font-black text-lg leading-none">V</span>
           </div>
           <div className="flex flex-col">
-            <span className="text-white font-heading font-bold text-lg tracking-tight leading-none">
+            <span className="text-primary font-heading font-bold text-lg tracking-tight leading-none">
               VELORA
             </span>
-            <span className="text-[7px] uppercase tracking-[0.35em] text-white/40 font-semibold">
+            <span className="text-[7px] uppercase tracking-[0.35em] text-text-muted font-semibold">
               Drive Beyond Ordinary
             </span>
           </div>
@@ -63,8 +63,8 @@ const Navbar: React.FC = () => {
                 to={link.path}
                 className={`relative px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] transition-all duration-300 rounded-lg cursor-pointer ${
                   isActive
-                    ? 'text-white'
-                    : 'text-white/50 hover:text-white hover:bg-white/[0.04]'
+                    ? 'text-primary'
+                    : 'text-text-muted hover:text-primary hover:bg-primary/[0.04]'
                 }`}
               >
                 {link.name}
@@ -84,7 +84,7 @@ const Navbar: React.FC = () => {
         <div className="hidden lg:flex items-center gap-6">
           <Link
             to="/login"
-            className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-white/50 hover:text-white transition-colors cursor-pointer"
+            className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-text-muted hover:text-primary transition-colors cursor-pointer"
           >
             <User size={15} />
             Login
@@ -96,7 +96,7 @@ const Navbar: React.FC = () => {
 
         {/* ── Mobile Menu Toggle ── */}
         <button
-          className="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg bg-white/5 text-white cursor-pointer"
+          className="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg bg-primary/5 text-primary cursor-pointer"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
@@ -112,11 +112,11 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-3xl lg:hidden flex flex-col pt-28 px-8"
+            className="fixed inset-0 z-50 bg-white/95 backdrop-blur-3xl lg:hidden flex flex-col pt-28 px-8"
           >
             {/* Close button */}
             <button
-              className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-lg bg-white/5 text-white cursor-pointer"
+              className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-lg bg-primary/5 text-primary cursor-pointer"
               onClick={() => setIsOpen(false)}
               aria-label="Close menu"
             >
@@ -135,7 +135,7 @@ const Navbar: React.FC = () => {
                   <Link
                     to={link.path}
                     className={`text-3xl font-heading font-bold uppercase italic flex items-center justify-between group cursor-pointer ${
-                      location.pathname === link.path ? 'text-cta' : 'text-white hover:text-cta'
+                      location.pathname === link.path ? 'text-cta' : 'text-primary hover:text-cta'
                     } transition-colors`}
                     onClick={() => setIsOpen(false)}
                   >
@@ -153,7 +153,7 @@ const Navbar: React.FC = () => {
             <div className="mt-auto mb-12 flex flex-col gap-4">
               <Link
                 to="/login"
-                className="text-center py-4 border border-white/10 rounded-xl text-[11px] font-semibold uppercase tracking-[0.15em] text-white hover:bg-white/5 transition-colors cursor-pointer"
+                className="text-center py-4 border border-primary/10 rounded-xl text-[11px] font-semibold uppercase tracking-[0.15em] text-primary hover:bg-primary/5 transition-colors cursor-pointer"
                 onClick={() => setIsOpen(false)}
               >
                 Login

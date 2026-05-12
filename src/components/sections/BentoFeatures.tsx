@@ -36,7 +36,7 @@ const features = [
 
 const BentoFeatures: React.FC = () => {
   return (
-    <section className="section-padding bg-matte-black relative overflow-hidden">
+    <section className="section-padding bg-background relative overflow-hidden">
       <div className="container mx-auto px-6 md:px-10">
         <SectionHeader
           eyebrow="Why Velora"
@@ -64,24 +64,24 @@ const BentoFeatures: React.FC = () => {
 
               {/* Content */}
               <div className={feat.large ? 'relative z-10' : ''}>
-                <h3 className={`font-heading font-bold italic uppercase mb-2 ${
+                <h3 className={`font-heading font-bold italic uppercase mb-2 text-primary ${
                   feat.large ? 'text-2xl lg:text-3xl' : feat.span ? 'text-xl' : 'text-sm tracking-widest'
                 }`}>
                   {feat.title}
                 </h3>
-                <p className={`text-white/40 leading-relaxed ${feat.large ? 'text-sm max-w-sm' : 'text-xs'}`}>
+                <p className={`text-text-muted leading-relaxed ${feat.large ? 'text-sm max-w-sm' : 'text-xs'}`}>
                   {feat.desc}
                 </p>
               </div>
 
               {/* Hover glow on large card */}
               {feat.large && (
-                <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-cta/[0.04] rounded-full blur-3xl group-hover:bg-cta/[0.08] transition-all duration-700" />
+                <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-cta/[0.02] rounded-full blur-3xl group-hover:bg-cta/[0.04] transition-all duration-700" />
               )}
 
               {/* Arrow on wide card */}
               {feat.span === 'lg:col-span-2' && !feat.large && (
-                <div className="w-10 h-10 rounded-xl bg-white/[0.04] flex items-center justify-center group-hover:text-cta transition-colors self-end">
+                <div className="w-10 h-10 rounded-xl bg-primary/[0.04] flex items-center justify-center group-hover:text-cta transition-colors self-end text-primary/30">
                   <ChevronRight size={18} />
                 </div>
               )}

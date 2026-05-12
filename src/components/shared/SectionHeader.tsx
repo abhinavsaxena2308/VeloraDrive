@@ -52,7 +52,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className={`text-white/50 text-base lg:text-lg font-light leading-relaxed mt-6 ${
+          className={`text-text-muted text-base lg:text-lg font-light leading-relaxed mt-6 ${
             align === 'center' ? 'max-w-2xl mx-auto' : 'max-w-xl'
           }`}
         >

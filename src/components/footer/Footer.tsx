@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-matte-black border-t border-white/[0.06]">
+    <footer className="bg-background border-t border-border">
       {/* Main Footer */}
       <div className="container mx-auto px-6 md:px-10 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
@@ -32,16 +32,16 @@ const Footer: React.FC = () => {
                 <span className="text-white font-black text-lg leading-none">V</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-white font-heading font-bold text-lg tracking-tight leading-none">
+                <span className="text-primary font-heading font-bold text-lg tracking-tight leading-none">
                   VELORA
                 </span>
-                <span className="text-[7px] uppercase tracking-[0.35em] text-white/40 font-semibold">
+                <span className="text-[7px] uppercase tracking-[0.35em] text-text-muted font-semibold">
                   Drive Beyond Ordinary
                 </span>
               </div>
             </Link>
 
-            <p className="text-white/40 text-sm leading-relaxed max-w-xs">
+            <p className="text-text-muted text-sm leading-relaxed max-w-xs">
               India's premium self-drive car rental platform. Luxury vehicles,
               seamless booking, and an experience that moves you.
             </p>
@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
                   key={name}
                   href="#"
                   aria-label={name}
-                  className="w-9 h-9 rounded-lg bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-white/40 hover:text-cta hover:border-cta/30 transition-all duration-300 cursor-pointer"
+                  className="w-9 h-9 rounded-lg bg-slate-50 border border-border flex items-center justify-center text-text-muted hover:text-cta hover:border-cta/30 transition-all duration-300 cursor-pointer"
                 >
                   <span className="text-[10px] font-bold">{name[0]}</span>
                 </a>
@@ -63,7 +63,7 @@ const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-[10px] uppercase tracking-[0.3em] font-bold text-white/60 mb-6">
+            <h4 className="text-[10px] uppercase tracking-[0.3em] font-bold text-primary mb-6">
               Quick Links
             </h4>
             <ul className="flex flex-col gap-3">
@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
                 <li key={link.name}>
                   <Link
                     to={link.path}
-                    className="text-sm text-white/40 hover:text-white transition-colors duration-200 flex items-center gap-1 group cursor-pointer"
+                    className="text-sm text-text-muted hover:text-primary transition-colors duration-200 flex items-center gap-1 group cursor-pointer"
                   >
                     {link.name}
                     <ArrowUpRight
@@ -86,13 +86,13 @@ const Footer: React.FC = () => {
 
           {/* Services */}
           <div>
-            <h4 className="text-[10px] uppercase tracking-[0.3em] font-bold text-white/60 mb-6">
+            <h4 className="text-[10px] uppercase tracking-[0.3em] font-bold text-primary mb-6">
               Services
             </h4>
             <ul className="flex flex-col gap-3">
               {services.map((service) => (
                 <li key={service}>
-                  <span className="text-sm text-white/40">{service}</span>
+                  <span className="text-sm text-text-muted">{service}</span>
                 </li>
               ))}
             </ul>
@@ -100,34 +100,34 @@ const Footer: React.FC = () => {
 
           {/* Contact + Newsletter */}
           <div>
-            <h4 className="text-[10px] uppercase tracking-[0.3em] font-bold text-white/60 mb-6">
+            <h4 className="text-[10px] uppercase tracking-[0.3em] font-bold text-primary mb-6">
               Get In Touch
             </h4>
             <ul className="flex flex-col gap-4 mb-8">
               <li className="flex items-start gap-3">
                 <MapPin size={16} className="text-cta mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-white/40">Sector 62, Noida, UP, India</span>
+                <span className="text-sm text-text-muted">Sector 62, Noida, UP, India</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={16} className="text-cta flex-shrink-0" />
-                <span className="text-sm text-white/40">+91 98765 43210</span>
+                <span className="text-sm text-text-muted">+91 98765 43210</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={16} className="text-cta flex-shrink-0" />
-                <span className="text-sm text-white/40">hello@veloradrive.com</span>
+                <span className="text-sm text-text-muted">hello@veloradrive.com</span>
               </li>
             </ul>
 
             {/* Newsletter */}
             <div>
-              <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 font-semibold mb-3">
+              <p className="text-[10px] uppercase tracking-[0.2em] text-text-muted font-semibold mb-3">
                 Subscribe for offers
               </p>
               <form className="flex gap-2">
                 <input
                   type="email"
                   placeholder="Your email"
-                  className="flex-1 bg-white/[0.04] border border-white/10 rounded-lg px-3 py-2.5 text-xs text-white placeholder:text-white/25 focus:outline-none focus:border-cta/40 transition-colors"
+                  className="flex-1 bg-slate-50 border border-border rounded-lg px-3 py-2.5 text-xs text-primary placeholder:text-text-muted/40 focus:outline-none focus:border-cta/40 transition-colors"
                 />
                 <button
                   type="submit"
@@ -142,19 +142,19 @@ const Footer: React.FC = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-white/[0.04]">
+      <div className="border-t border-border">
         <div className="container mx-auto px-6 md:px-10 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-white/25">
+          <p className="text-xs text-text-muted/60">
             © 2026 Velora Drive. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="text-xs text-white/25 hover:text-white/50 transition-colors cursor-pointer">
+            <a href="#" className="text-xs text-text-muted/60 hover:text-primary transition-colors cursor-pointer">
               Privacy Policy
             </a>
-            <a href="#" className="text-xs text-white/25 hover:text-white/50 transition-colors cursor-pointer">
+            <a href="#" className="text-xs text-text-muted/60 hover:text-primary transition-colors cursor-pointer">
               Terms of Service
             </a>
-            <a href="#" className="text-xs text-white/25 hover:text-white/50 transition-colors cursor-pointer">
+            <a href="#" className="text-xs text-text-muted/60 hover:text-primary transition-colors cursor-pointer">
               Refund Policy
             </a>
           </div>

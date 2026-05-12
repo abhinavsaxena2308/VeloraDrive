@@ -8,7 +8,7 @@ import TestimonialsSection from '../components/sections/TestimonialsSection';
 
 const Home: React.FC = () => {
   return (
-    <div className="flex flex-col bg-deep-black overflow-x-hidden">
+    <div className="flex flex-col bg-background overflow-x-hidden">
       <HeroSection />
       <BentoFeatures />
       <FleetShowcase />
@@ -16,7 +16,7 @@ const Home: React.FC = () => {
       <TestimonialsSection />
 
       {/* Final CTA */}
-      <section className="section-padding bg-deep-black">
+      <section className="section-padding bg-background">
         <div className="container mx-auto px-6 md:px-10">
           <div className="glass-card p-12 md:p-20 text-center overflow-hidden relative">
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,_#DC2626_0%,_transparent_70%)] opacity-[0.04]" />

@@ -15,7 +15,7 @@ const testimonials = [
 ];
 
 const TestimonialsSection: React.FC = () => (
-  <section className="section-padding bg-deep-black overflow-hidden">
+  <section className="section-padding bg-background overflow-hidden">
     <div className="container mx-auto px-6 md:px-10">
       <SectionHeader eyebrow="Testimonials" title="WHAT OUR" highlight="DRIVERS SAY" description="Real experiences from verified renters across India." align="center" />
       <Swiper modules={[Autoplay]} spaceBetween={24} slidesPerView={1} autoplay={{ delay: 4000, disableOnInteraction: false }} breakpoints={{ 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }} className="pb-4">
@@ -25,11 +25,11 @@ const TestimonialsSection: React.FC = () => (
               <div className="flex gap-1 mb-5">
                 {Array.from({ length: t.rating }).map((_, j) => (<Star key={j} size={14} className="text-cta fill-cta" />))}
               </div>
-              <p className="text-white/50 text-sm leading-relaxed flex-1 mb-6">"{t.text}"</p>
-              <div className="flex items-center justify-between border-t border-white/[0.06] pt-5">
+              <p className="text-text-muted text-sm leading-relaxed flex-1 mb-6">"{t.text}"</p>
+              <div className="flex items-center justify-between border-t border-border pt-5">
                 <div>
-                  <span className="block text-white font-semibold text-sm">{t.name}</span>
-                  <span className="text-[10px] text-white/30 uppercase tracking-wider">{t.role}</span>
+                  <span className="block text-primary font-semibold text-sm">{t.name}</span>
+                  <span className="text-[10px] text-text-muted/60 uppercase tracking-wider">{t.role}</span>
                 </div>
                 <span className="badge-neutral">{t.city}</span>
               </div>
