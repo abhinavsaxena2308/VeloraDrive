@@ -13,7 +13,7 @@ const FEATURES = [
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="relative min-h-screen bg-[#FAF7F2] overflow-hidden flex flex-col pt-16 md:pt-20 pb-6">
+    <section className="relative min-h-screen bg-[#FAF7F2] overflow-hidden flex flex-col pt-32 md:pt-20 pb-6">
       
       {/* ── Background Layer (Full Section) ── */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -37,10 +37,10 @@ const HeroSection: React.FC = () => {
         <div className="absolute bottom-0 left-0 w-full h-[25%] bg-gradient-to-t from-[#FAF7F2] via-[#FAF7F2]/70 to-transparent z-10" />
       </div>
 
-      <div className="container mx-auto px-6 md:px-10 relative z-10 flex flex-col items-start flex-1">
+      <div className="container mx-auto px-6 md:px-10 relative z-10 flex flex-col items-center md:items-start flex-1">
         
         {/* ── Header Content ── */}
-        <div className="w-full">
+        <div className="w-full flex flex-col items-center md:items-start mt-auto">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -57,7 +57,7 @@ const HeroSection: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="font-heading font-bold italic leading-[1] tracking-tight text-[#4A3728] mb-3 md:mb-4 drop-shadow-[0_4px_12px_rgba(255,255,255,0.3)]"
+            className="font-heading font-bold italic leading-[1] tracking-tight text-[#4A3728] mb-3 md:mb-4 drop-shadow-[0_4px_12px_rgba(255,255,255,0.3)] text-center md:text-left"
             style={{ fontSize: 'clamp(2.5rem, 7vw, 4.2rem)' }}
           >
             Rent Premium Cars
@@ -69,33 +69,33 @@ const HeroSection: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-[#3D2B1F] text-xs md:text-base lg:text-lg font-normal leading-relaxed max-w-[90%] md:max-w-md mb-6 md:mb-8 drop-shadow-[0_2px_4px_rgba(255,255,255,0.4)]"
+            className="text-[#3D2B1F] text-xs md:text-base lg:text-lg font-normal leading-relaxed max-w-[90%] md:max-w-md mb-6 md:mb-8 drop-shadow-[0_2px_4px_rgba(255,255,255,0.4)] text-center md:text-left"
           >
             Self-drive luxury cars with instant booking, seamless experiences,
             and doorstep delivery. Drive beyond ordinary.
           </motion.p>
         </div>
 
-        {/* ── Availability Indicator ── */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          className="flex items-center gap-2.5 mb-4"
-        >
-          <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]" />
-          <span className="text-[10px] uppercase tracking-[0.3em] font-black text-emerald-600/90">
-            Cars Available Now
-          </span>
-        </motion.div>
-
-        {/* ── Search Bar Area ── */}
-        <div className="w-full max-w-md lg:max-w-sm mb-10 md:mb-12">
+        {/* ── Search Bar Area (With Availability Indicator Integrated for Mobile) ── */}
+        <div className="w-full max-w-md  lg:max-w-sm mt-auto mb-10 md:mt-0 md:mb-12 flex flex-col items-center md:items-start">
+          {/* Availability Indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8 }}
+            className="flex items-center gap-2.5 mb-4"
+          >
+            <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]" />
+            <span className="text-[10px] uppercase tracking-[0.3em] font-black text-emerald-600/90">
+              Cars Available Now
+            </span>
+          </motion.div>
+          
           <BookingWidget />
         </div>
 
         {/* ── Responsive Spacer (Mobile/Tablet Only) ── */}
-        <div className="flex-1 min-h-[60px] lg:hidden" />
+        <div className="flex-1 min-h-[40px] lg:hidden" />
 
         {/* ── Footer Features (Compact Row) ── */}
         <div className="w-full mt-auto">
