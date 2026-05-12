@@ -87,7 +87,7 @@ const Cars: React.FC = () => {
 
         {/* Cars Grid */}
         {filteredCars.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {filteredCars.map((car, i) => (
               <CarCard key={car.id} car={car} index={i} />
             ))}
