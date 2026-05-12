@@ -19,25 +19,26 @@ const COLUMN_1 = [...CAR_IMAGES, ...CAR_IMAGES];
 const COLUMN_2 = [...CAR_IMAGES].reverse().concat([...CAR_IMAGES].reverse());
 
 // ─── Vertical Carousel ────────────────────────────────────────────────────────
-const VerticalCarousel = ({ images, duration = 35 }: { images: typeof CAR_IMAGES; duration?: number }) => (
+// ─── Vertical Carousel ────────────────────────────────────────────────────────
+const VerticalCarousel = ({ images, duration = 35, reverse = false }: { images: typeof CAR_IMAGES; duration?: number; reverse?: boolean }) => (
   <div className="relative h-full overflow-hidden w-full">
     <motion.div
       className="flex flex-col gap-4"
-      animate={{ y: ['0%', '-50%'] }}
+      animate={{ y: reverse ? ['-50%', '0%'] : ['0%', '-50%'] }}
       transition={{ duration, repeat: Infinity, ease: 'linear' }}
       style={{ willChange: 'transform' }}
     >
       {images.map((car, i) => (
-        <div key={i} className="aspect-[3/4] w-full rounded-2xl overflow-hidden relative group flex-shrink-0">
+        <div key={i} className="aspect-[3/4] w-full rounded-2xl overflow-hidden relative group flex-shrink-0 border border-primary/5">
           <img
             src={car.url}
             alt={car.name}
-            className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700"
+            className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <span className="text-white font-semibold text-sm">{car.name}</span>
+            <span className="text-white font-bold text-xs uppercase tracking-widest">{car.name}</span>
           </div>
         </div>
       ))}
@@ -107,18 +108,13 @@ const HeroSection: React.FC = () => {
 
       {/* ═══ RIGHT SIDE — Dual Carousels ═══ */}
       <div className="hidden lg:block lg:w-[45%] relative">
-        {/* Gradient bleeds */}
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
-
         {/* Two carousel columns */}
         <div className="absolute inset-0 flex gap-4 px-6 py-8 overflow-hidden">
           <div className="flex-1 h-full">
-            <VerticalCarousel images={COLUMN_1} duration={35} />
+            <VerticalCarousel images={COLUMN_1} duration={40} />
           </div>
-          <div className="flex-1 h-full mt-20">
-            <VerticalCarousel images={COLUMN_2} duration={45} />
+          <div className="flex-1 h-full">
+            <VerticalCarousel images={COLUMN_2} duration={50} reverse={true} />
           </div>
         </div>
       </div>
