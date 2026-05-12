@@ -19,7 +19,7 @@ const Home: React.FC = () => {
       <section className="section-padding bg-background">
         <div className="container mx-auto px-6 md:px-10">
           <div className="glass-card p-12 md:p-20 text-center overflow-hidden relative">
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,_#DC2626_0%,_transparent_70%)] opacity-[0.04]" />
+            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,_var(--color-primary)_0%,_transparent_70%)] opacity-[0.04]" />
             <h2 className="text-4xl md:text-7xl font-heading font-bold mb-8 italic leading-[0.95] relative z-10">
               THE ROAD IS YOURS.
               <br />
