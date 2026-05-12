@@ -39,8 +39,8 @@ function App() {
         <div className="noise-overlay" />
         <CustomCursor />
         <AppRouter />
-        <WhatsAppButton />
-        <ChatbotUI />
+        {/* <WhatsAppButton /> */}
+        {/* <ChatbotUI /> */}
         <Toaster position="bottom-right" reverseOrder={false} />
       </Router>
     </HelmetProvider>

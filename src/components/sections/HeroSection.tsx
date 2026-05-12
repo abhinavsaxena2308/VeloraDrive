@@ -1,151 +1,132 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import { Shield, Car, Headphones } from 'lucide-react';
 import BookingWidget from './BookingWidget';
-import TrustBadges from '../shared/TrustBadges';
 import heroBg from '../../assets/hero-bg.png';
+import heroMobileBg from '../../assets/hero-mobile-bg.png';
 
-// ─── Carousel Code (commented out) ───────────────────────────────────────────
-/*
-const CAR_IMAGES = [
-  { name: 'Porsche 911', url: '/src/assets/car images/1.jpg' },
-  { name: 'Lamborghini', url: '/src/assets/car images/7.jpg' },
-  { name: 'Mercedes S', url: '/src/assets/car images/2.jpg' },
-  { name: 'Audi RS7', url: '/src/assets/car images/6.jpg' },
-  { name: 'Range Rover', url: '/src/assets/car images/3.jpg' },
-  { name: 'BMW M4', url: '/src/assets/car images/4.jpg' },
+const FEATURES = [
+  { icon: Car, label: 'Premium Fleet', desc: 'Well maintained luxury cars' },
+  { icon: Shield, label: 'Safe & Secure', desc: 'Your safety is our priority' },
+  { icon: Headphones, label: '24/7 Support', desc: 'We are here for you' },
 ];
 
-const COLUMN_1 = [...CAR_IMAGES, ...CAR_IMAGES];
-const COLUMN_2 = [...CAR_IMAGES].reverse().concat([...CAR_IMAGES].reverse());
-
-const VerticalCarousel = ({ images, duration = 35, reverse = false }: { images: typeof CAR_IMAGES; duration?: number; reverse?: boolean }) => (
-  <div className="relative h-full overflow-hidden w-full">
-    <motion.div
-      className="flex flex-col gap-4"
-      animate={{ y: reverse ? ['-50%', '0%'] : ['0%', '-50%'] }}
-      transition={{ duration, repeat: Infinity, ease: 'linear' }}
-      style={{ willChange: 'transform' }}
-    >
-      {images.map((car, i) => (
-        <div key={i} className="aspect-[3/4] w-full rounded-2xl overflow-hidden relative group flex-shrink-0 border border-primary/5">
-          <img
-            src={car.url}
-            alt={car.name}
-            className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
-            loading="lazy"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <span className="text-white font-bold text-xs uppercase tracking-widest">{car.name}</span>
-          </div>
-        </div>
-      ))}
-    </motion.div>
-  </div>
-);
-*/
-
-// ─── Hero Section ─────────────────────────────────────────────────────────────
 const HeroSection: React.FC = () => {
   return (
-    <section className="relative min-h-screen flex overflow-hidden ">
-
-      {/* ─── Full-bleed Background Image ─── */}
-      <div className="absolute inset-0 z-0 bg-background">
+    <section className="relative min-h-screen bg-[#FAF7F2] overflow-hidden flex flex-col pt-16 md:pt-20 pb-6">
+      
+      {/* ── Background Layer (Full Section) ── */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Responsive Background Images */}
+        <img
+          src={heroMobileBg}
+          alt=""
+          className="block md:hidden w-full h-full object-cover object-bottom"
+        />
         <img
           src={heroBg}
-          alt="VeloraDrive Hero"
-          className="absolute inset-0 w-full h-full object-cover object-[75%_center] md:object-[right_30%]"
+          alt=""
+          className="hidden md:block absolute inset-x-0 top-0 w-full h-[125%] object-cover object-[right_center] lg:object-center opacity-90 -translate-y-[22%] md:-translate-y-[18%] lg:-translate-y-[22%]"
         />
-        {/* Left-side gradient — provides contrast for the text */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/40 via-background/70 to-transparent md:from-background/95 md:via-background/70 md:to-transparent" />
-        {/* Subtle white top veil for mobile readability and "white shadow" glow */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-transparent" />
+        
+        {/* Ambient Glows */}
+        <div className="absolute top-0 right-0 w-[70%] h-[70%] bg-gradient-to-bl from-[#F2B76D]/15 via-transparent to-transparent blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[50%] h-[50%] bg-gradient-to-tr from-cta/10 via-transparent to-transparent blur-[100px]" />
+        
+        {/* Bottom to Top Shadow for Features Visibility */}
+        <div className="absolute bottom-0 left-0 w-full h-[25%] bg-gradient-to-t from-[#FAF7F2] via-[#FAF7F2]/70 to-transparent z-10" />
       </div>
 
-      {/* ═══ LEFT CONTENT — constrained to left 55% so car on right is fully visible ═══ */}
-      <div className="relative z-10 w-full lg:w-[52%] flex flex-col justify-start md:justify-center px-6 md:px-12 lg:px-16 xl:px-24 pt-24 md:pt-0 pb-12 lg:pt-0 lg:pb-0 h-full">
+      <div className="container mx-auto px-6 md:px-10 relative z-10 flex flex-col items-start flex-1">
         
-        {/* Readability backdrop for mobile — subtle white glow behind text area */}
-        <div className="absolute top-0 left-0 w-full h-[70%] lg:hidden bg-white/20 backdrop-blur-[1px] pointer-events-none z-[-1] [mask-image:radial-gradient(ellipse_at_top_left,black,transparent_70%)]" />
+        {/* ── Header Content ── */}
+        <div className="w-full">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center gap-2 mb-4 md:mb-6"
+          >
+            <div className="w-2 h-2 rounded-full bg-cta" />
+            <span className="text-[10px] md:text-[11px] uppercase tracking-[0.4em] font-black text-cta">
+              Premium Self Drive
+            </span>
+          </motion.div>
 
-        {/* Eyebrow */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="font-heading font-bold italic leading-[1] tracking-tight text-[#4A3728] mb-3 md:mb-4 drop-shadow-[0_4px_12px_rgba(255,255,255,0.3)]"
+            style={{ fontSize: 'clamp(2.5rem, 7vw, 4.2rem)' }}
+          >
+            Rent Premium Cars
+            <br />
+            Across Delhi.
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-[#3D2B1F] text-xs md:text-base lg:text-lg font-normal leading-relaxed max-w-[90%] md:max-w-md mb-6 md:mb-8 drop-shadow-[0_2px_4px_rgba(255,255,255,0.4)]"
+          >
+            Self-drive luxury cars with instant booking, seamless experiences,
+            and doorstep delivery. Drive beyond ordinary.
+          </motion.p>
+        </div>
+
+        {/* ── Availability Indicator ── */}
         <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-3 mb-4 md:mb-6 self-start"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+          className="flex items-center gap-2.5 mb-4"
         >
-          <span className="w-6 h-[1.5px] bg-primary opacity-60" />
-          <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-primary">
-            Premium Self Drive
+          <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]" />
+          <span className="text-[10px] uppercase tracking-[0.3em] font-black text-emerald-600/90">
+            Cars Available Now
           </span>
         </motion.div>
-...
-        {/* Heading */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="font-heading font-extrabold leading-[0.92] tracking-tighter italic mb-4 md:mb-5 text-primary drop-shadow-[0_2px_15px_rgba(255,255,255,0.6)]"
-          style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)' }}
-        >
-          Rent Premium Cars
-          <br />
-          <span className="text-gradient">Across Delhi.</span>
-        </motion.h1>
 
-        {/* Subheading */}
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.25 }}
-          className="text-text-muted text-sm md:text-base lg:text-lg font-light leading-relaxed max-w-md mb-6 md:mb-8 drop-shadow-[0_1px_5px_rgba(255,255,255,0.8)]"
-        >
-          Self-drive luxury cars with instant booking, seamless experiences,
-          and doorstep delivery. Drive beyond ordinary.
-        </motion.p>
-
-        {/* Booking Widget */}
-        <BookingWidget />
-
-        {/* Trust badges */}
-        <div className="mt-8 drop-shadow-[0_1px_10px_rgba(255,255,255,0.8)]">
-          <TrustBadges count={4} />
+        {/* ── Search Bar Area ── */}
+        <div className="w-full max-w-md lg:max-w-sm mb-10 md:mb-12">
+          <BookingWidget />
         </div>
-      </div>
 
-      {/* ═══ RIGHT SIDE — Carousel (commented out) ═══ */}
-      {/*
-      <div className="hidden lg:block lg:w-[45%] relative">
-        <div className="absolute inset-0 flex gap-4 px-6 py-0 overflow-hidden">
-          <div className="flex-1 h-full">
-            <VerticalCarousel images={COLUMN_1} duration={40} />
-          </div>
-          <div className="flex-1 h-full">
-            <VerticalCarousel images={COLUMN_2} duration={50} reverse={true} />
-          </div>
+        {/* ── Responsive Spacer (Mobile/Tablet Only) ── */}
+        <div className="flex-1 min-h-[60px] lg:hidden" />
+
+        {/* ── Footer Features (Compact Row) ── */}
+        <div className="w-full mt-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1 }}
+            className="grid grid-cols-3 gap-1 md:gap-3 w-full pt-4 border-t border-[#E5D8C8]/60"
+          >
+            {FEATURES.map((f, i) => (
+              <div key={i} className="flex flex-col items-center px-1 relative group">
+                {/* Vertical divider */}
+                {i !== 0 && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[1px] h-6 bg-[#E5D8C8]/50" />}
+                
+                {/* Icon Circle (Smaller) */}
+                <div className="w-6 h-6 md:w-9 md:h-9 rounded-full bg-white/50 backdrop-blur-md border border-[#E5D8C8]/40 flex items-center justify-center text-cta mb-1.5 md:mb-2 transition-transform duration-300 group-hover:scale-110 shadow-sm">
+                  <f.icon size={12} className="md:w-4 md:h-4" />
+                </div>
+
+                {/* Text Content (Tightened) */}
+                <h3 className="text-[8px] md:text-[11px] font-bold text-[#4A3728] uppercase tracking-wider text-center mb-0.5">
+                  {f.label}
+                </h3>
+                <p className="text-[7px] md:text-[9px] text-[#8B6A3A] font-medium text-center leading-tight max-w-[70px] md:max-w-none opacity-80">
+                  {f.desc}
+                </p>
+              </div>
+            ))}
+          </motion.div>
         </div>
-      </div>
-      */}
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 0.6 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-1.5 z-10 hidden lg:flex"
-      >
-        <span className="text-[8px] uppercase tracking-[0.4em] text-primary/30 font-semibold">Scroll</span>
-        <motion.div animate={{ y: [0, 4, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}>
-          <ChevronDown size={14} className="text-primary/30" />
-        </motion.div>
-      </motion.div>
-
-      {/* ═══ CLOUDY TRANSITION — BOTTOM ═══ */}
-      <div className="absolute bottom-0 left-0 w-full h-32 pointer-events-none z-[15]">
-        <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-background via-background/80 to-transparent" />
       </div>
     </section>
   );
