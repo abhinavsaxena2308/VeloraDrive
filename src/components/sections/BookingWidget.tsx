@@ -1,121 +1,59 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Calendar, Car, Search, ChevronDown } from 'lucide-react';
-import { cities } from '../../data/cars';
+import { MapPin, Search } from 'lucide-react';
 
 const BookingWidget: React.FC = () => {
-  const [pickupCity, setPickupCity] = useState('');
-  const [pickupDate, setPickupDate] = useState('');
-  const [returnDate, setReturnDate] = useState('');
-  const [carType, setCarType] = useState('');
+  const [location, setLocation] = useState('');
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.5 }}
-      className="w-full"
+      transition={{ duration: 0.7, delay: 0.4 }}
+      className="w-full max-w-4xl"
     >
-      {/* Header */}
-      <div className="flex items-center gap-3 mb-5">
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)]" />
-          <span className="text-[10px] uppercase tracking-[0.25em] text-green-500/80 font-semibold">
-            Cars Available Now
-          </span>
-        </div>
-      </div>
+      {/* Simple Search Bar */}
+      <div className="flex items-center gap-2 bg-white/95 border border-white/40 rounded-[22px] p-2 shadow-[0_15px_35px_rgba(0,0,0,0.1)] backdrop-blur-xl">
 
-      {/* Booking Form */}
-      <div className="bg-white shadow-xl border border-border rounded-2xl p-6 lg:p-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
+        {/* Location Input */}
+        <div className="flex items-center gap-2 flex-1 px-4 h-[50px] md:h-[60px] rounded-[18px] bg-[#FAF7F2] border border-[#E5D8C8]">
+          <MapPin size={18} className="text-[#B88650] shrink-0" />
 
-          {/* Pickup City */}
-          <div className="relative">
-            <label htmlFor="pickup-city" className="input-label">
-              Pickup City
-            </label>
-            <div className="relative">
-              <MapPin size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-text-muted/50" />
-              <select
-                id="pickup-city"
-                value={pickupCity}
-                onChange={(e) => setPickupCity(e.target.value)}
-                className="input-field pl-10 pr-8 appearance-none cursor-pointer"
-              >
-                <option value="">Select City</option>
-                {cities.map((city) => (
-                  <option key={city} value={city}>{city}</option>
-                ))}
-              </select>
-              <ChevronDown size={14} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-text-muted/50 pointer-events-none" />
-            </div>
-          </div>
+          <div className="flex flex-col flex-1 min-w-0">
+            <span className="text-[9px] uppercase tracking-[0.15em] text-[#C08B54] font-semibold leading-none mb-1">
+              Location
+            </span>
 
-          {/* Pickup Date */}
-          <div>
-            <label htmlFor="pickup-date" className="input-label">
-              Pickup Date
-            </label>
-            <div className="relative">
-              <Calendar size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-text-muted/50" />
-              <input
-                id="pickup-date"
-                type="date"
-                value={pickupDate}
-                onChange={(e) => setPickupDate(e.target.value)}
-                className="input-field pl-10 cursor-pointer"
-              />
-            </div>
-          </div>
-
-          {/* Return Date */}
-          <div>
-            <label htmlFor="return-date" className="input-label">
-              Return Date
-            </label>
-            <div className="relative">
-              <Calendar size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-text-muted/50" />
-              <input
-                id="return-date"
-                type="date"
-                value={returnDate}
-                onChange={(e) => setReturnDate(e.target.value)}
-                className="input-field pl-10 cursor-pointer"
-              />
-            </div>
-          </div>
-
-          {/* Car Type */}
-          <div>
-            <label htmlFor="car-type" className="input-label">
-              Car Type
-            </label>
-            <div className="relative">
-              <Car size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-text-muted/50" />
-              <select
-                id="car-type"
-                value={carType}
-                onChange={(e) => setCarType(e.target.value)}
-                className="input-field pl-10 pr-8 appearance-none cursor-pointer"
-              >
-                <option value="">All Types</option>
-                <option value="SUV">SUV</option>
-                <option value="Sedan">Sedan</option>
-                <option value="Sports">Sports</option>
-                <option value="Luxury">Luxury</option>
-                <option value="Electric">Electric</option>
-                <option value="Hatchback">Hatchback</option>
-              </select>
-              <ChevronDown size={14} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-text-muted/50 pointer-events-none" />
-            </div>
+            <input
+              type="text"
+              placeholder="Where to?"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              className="bg-transparent text-[14px] text-[#6E5338] placeholder:text-[#B7A28B] outline-none w-full"
+            />
           </div>
         </div>
 
         {/* Search Button */}
-        <button className="btn-primary w-full py-4 text-[11px] group">
-          <Search size={16} className="group-hover:scale-110 transition-transform" />
-          Search Available Cars
+        <button
+          className="
+            w-[50px] md:w-[60px]
+            h-[50px] md:h-[60px]
+            rounded-[18px]
+            bg-[#E1913A]
+            hover:bg-[#d6842d]
+            text-white
+            transition-all
+            duration-300
+            flex
+            items-center
+            justify-center
+            shrink-0
+            shadow-[0_8px_20px_rgba(225,145,58,0.2)]
+            active:scale-95
+          "
+        >
+          <Search size={20} />
         </button>
       </div>
     </motion.div>

@@ -27,11 +27,11 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
           viewport={{ once: true }}
           className={`inline-flex items-center gap-3 mb-6 ${align === 'center' ? 'justify-center' : ''}`}
         >
-          <span className="w-6 h-[1.5px] bg-cta" />
-          <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-cta">
+          <span className="w-6 h-[1.5px] bg-primary opacity-40" />
+          <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-primary">
             {eyebrow}
           </span>
-          <span className="w-6 h-[1.5px] bg-cta" />
+          <span className="w-6 h-[1.5px] bg-primary opacity-40" />
         </motion.div>
       )}
 

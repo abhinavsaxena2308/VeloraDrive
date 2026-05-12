@@ -32,13 +32,13 @@ const Contact: React.FC = () => (
 
           {/* WhatsApp */}
           <div className="glass-card p-8 flex items-center gap-6 group">
-            <div className="w-14 h-14 bg-green-500/10 rounded-xl flex items-center justify-center text-green-500">
+            <div className="w-14 h-14 bg-cta/10 rounded-xl flex items-center justify-center text-cta">
               <MessageSquare size={28} />
             </div>
             <div>
               <h4 className="font-heading font-bold italic text-lg mb-1 text-primary">WhatsApp Support</h4>
               <p className="text-text-muted/60 text-xs mb-3">Chat with our concierge for instant help.</p>
-              <button className="text-green-500 font-semibold flex items-center gap-2 text-[10px] uppercase tracking-[0.15em] cursor-pointer group">
+              <button className="text-cta font-semibold flex items-center gap-2 text-[10px] uppercase tracking-[0.15em] cursor-pointer group">
                 Start Chat <Send size={12} className="group-hover:translate-x-1 transition-transform" />
               </button>
             </div>

@@ -12,7 +12,7 @@ const WhatsAppButton: React.FC = () => {
       animate={{ scale: 1, opacity: 1 }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="fixed bottom-8 right-8 w-16 h-16 bg-green-500 rounded-full flex items-center justify-center text-white shadow-lg z-[999] hover:bg-green-600 transition-colors shadow-green-500/30"
+      className="fixed bottom-8 right-8 w-16 h-16 bg-cta rounded-full flex items-center justify-center text-white shadow-lg z-[999] hover:bg-[#B3651F] transition-colors shadow-cta/30"
     >
       <MessageCircle size={32} />
       <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full animate-bounce">

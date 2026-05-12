@@ -295,3 +295,5 @@ export function getCarsByType(type: string): Car[] {
   if (type === 'All') return cars;
   return cars.filter(car => car.type === type);
 }
+
+
