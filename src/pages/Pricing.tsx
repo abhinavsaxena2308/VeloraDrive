@@ -44,7 +44,7 @@ const Pricing: React.FC = () => {
                   </div>
                 ))}
               </div>
-              <button className={`w-full py-4 rounded-xl font-semibold transition-all uppercase tracking-[0.15em] text-[10px] cursor-pointer ${plan.recommended ? 'bg-cta text-white shadow-glow hover:bg-red-700' : 'bg-slate-50 border border-border text-primary hover:bg-slate-100'}`}>
+              <button className={`w-full py-4 rounded-xl font-semibold transition-all uppercase tracking-[0.15em] text-[10px] cursor-pointer ${plan.recommended ? 'bg-cta text-white shadow-glow hover:bg-primary' : 'bg-slate-50 border border-border text-primary hover:bg-slate-100'}`}>
                 Select Plan
               </button>
             </motion.div>

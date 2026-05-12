@@ -33,14 +33,14 @@ const Navbar: React.FC = () => {
       className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${
         scrolled
           ? 'bg-white/90 backdrop-blur-2xl py-3 border-b border-primary/5 shadow-sm'
-          : 'bg-transparent py-5'
+          : 'bg-transparent py-3'
       }`}
     >
       <div className="container mx-auto px-6 md:px-10 flex justify-between items-center">
 
         {/* ── Logo ── */}
         <Link to="/" className="flex items-center gap-3 group">
-          <div className="w-9 h-9 bg-cta rounded-lg flex items-center justify-center shadow-glow group-hover:rotate-6 transition-transform duration-300">
+          <div className="w-8 h-8 bg-cta rounded-lg flex items-center justify-center shadow-glow group-hover:rotate-6 transition-transform duration-300">
             <span className="text-white font-black text-lg leading-none">V</span>
           </div>
           <div className="flex flex-col">
@@ -89,7 +89,7 @@ const Navbar: React.FC = () => {
             <User size={15} />
             Login
           </Link>
-          <Link to="/cars" className="btn-primary py-3 px-7 text-[10px]">
+          <Link to="/cars" className="btn-primary py-2.5 px-6 text-[10px]">
             Book Now
           </Link>
         </div>

@@ -53,12 +53,12 @@ const HeroSection: React.FC = () => {
 
       {/* Ambient background blobs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[60%] bg-cta/[0.03] rounded-full blur-[140px]" />
-        <div className="absolute bottom-[-20%] right-[5%] w-[35%] h-[50%] bg-blue-600/[0.02] rounded-full blur-[120px]" />
+        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[60%] bg-accent/[0.05] rounded-full blur-[140px]" />
+        <div className="absolute bottom-[-20%] right-[5%] w-[35%] h-[50%] bg-cta/[0.03] rounded-full blur-[120px]" />
       </div>
 
       {/* ═══ LEFT CONTENT — 55% ═══ */}
-      <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-center px-6 md:px-10 lg:px-16 xl:px-20 pt-28 pb-12 lg:pt-0 lg:pb-0">
+      <div className="relative z-10 w-full lg:w-[55%] flex flex-col justify-center px-6 md:px-10 lg:px-16 xl:px-20 pt-14 pb-12 lg:pt-0 lg:pb-0">
 
         {/* Eyebrow */}
         <motion.div
@@ -109,7 +109,7 @@ const HeroSection: React.FC = () => {
       {/* ═══ RIGHT SIDE — Dual Carousels ═══ */}
       <div className="hidden lg:block lg:w-[45%] relative">
         {/* Two carousel columns */}
-        <div className="absolute inset-0 flex gap-4 px-6 py-8 overflow-hidden">
+        <div className="absolute inset-0 flex gap-4 px-6 py-0 overflow-hidden">
           <div className="flex-1 h-full">
             <VerticalCarousel images={COLUMN_1} duration={40} />
           </div>

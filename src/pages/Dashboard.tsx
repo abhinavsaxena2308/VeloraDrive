@@ -4,13 +4,13 @@ import { motion } from 'framer-motion';
 import { Car, Calendar, Heart, Settings, LogOut, ChevronRight } from 'lucide-react';
 
 const stats = [
-  { label: 'Active Rentals', value: '1', color: 'text-green-500' },
+  { label: 'Active Rentals', value: '1', color: 'text-accent' },
   { label: 'Total Trips', value: '12', color: 'text-cta' },
-  { label: 'Saved Cars', value: '5', color: 'text-amber-500' },
+  { label: 'Saved Cars', value: '5', color: 'text-primary' },
 ];
 
 const bookings = [
-  { id: '#VD-2401', car: 'Mercedes S-Class', date: 'May 15 – May 18', status: 'Active', statusColor: 'text-green-600 bg-green-50' },
+  { id: '#VD-2401', car: 'Mercedes S-Class', date: 'May 15 – May 18', status: 'Active', statusColor: 'text-primary bg-accent/20' },
   { id: '#VD-2398', car: 'BMW M4 Competition', date: 'May 5 – May 7', status: 'Completed', statusColor: 'text-text-muted/60 bg-slate-100' },
   { id: '#VD-2395', car: 'Range Rover SV', date: 'Apr 28 – Apr 30', status: 'Completed', statusColor: 'text-text-muted/60 bg-slate-100' },
   { id: '#VD-2390', car: 'Porsche 911 GT3', date: 'Apr 20 – Apr 22', status: 'Completed', statusColor: 'text-text-muted/60 bg-slate-100' },

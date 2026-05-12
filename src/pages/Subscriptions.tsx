@@ -34,7 +34,7 @@ const Subscriptions: React.FC = () => (
                 </div>
               ))}
             </div>
-            <button className={`w-full py-3.5 rounded-xl font-semibold transition-all uppercase tracking-[0.12em] text-[10px] cursor-pointer flex items-center justify-center gap-2 ${tier.recommended ? 'bg-cta text-white shadow-glow hover:bg-red-700' : 'bg-slate-50 border border-border text-primary hover:bg-slate-100'}`}>
+            <button className={`w-full py-3.5 rounded-xl font-semibold transition-all uppercase tracking-[0.12em] text-[10px] cursor-pointer flex items-center justify-center gap-2 ${tier.recommended ? 'bg-cta text-white shadow-glow hover:bg-primary' : 'bg-slate-50 border border-border text-primary hover:bg-slate-100'}`}>
               {tier.price === 'Custom' ? 'Contact Sales' : 'Subscribe Now'} <ArrowRight size={14} />
             </button>
           </motion.div>

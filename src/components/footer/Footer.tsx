@@ -131,7 +131,7 @@ const Footer: React.FC = () => {
                 />
                 <button
                   type="submit"
-                  className="bg-cta hover:bg-red-700 text-white px-4 py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-colors cursor-pointer"
+                  className="bg-cta hover:bg-primary text-white px-4 py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-colors cursor-pointer"
                 >
                   Join
                 </button>

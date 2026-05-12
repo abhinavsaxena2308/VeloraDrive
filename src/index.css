@@ -4,25 +4,25 @@
   --font-sans: "Jost", ui-sans-serif, system-ui, sans-serif;
   --font-heading: "Bodoni Moda", serif;
 
-  /* ── Color Tokens (Light Theme) ── */
-  --color-primary: #1E293B;
-  --color-secondary: #64748B;
-  --color-cta: #DC2626;
-  --color-accent: #0284C7;
+  /* ── Color Tokens (Eco-Luxury Green Palette) ── */
+  --color-primary: #1F6F5F;
+  --color-secondary: #2FA084;
+  --color-cta: #2FA084;
+  --color-accent: #6FCF97;
   
-  --color-background: #F8FAFC;
+  --color-background: #EEEEEE;
   --color-surface: #FFFFFF;
-  --color-text: #0F172A;
-  --color-text-muted: #64748B;
-  --color-border: #E2E8F0;
+  --color-text: #1F6F5F;
+  --color-text-muted: #4B5563;
+  --color-border: #D1D5DB;
 
   /* ── Radius ── */
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
 
   /* ── Shadows ── */
-  --shadow-glow: 0 0 20px rgba(220, 38, 38, 0.2);
-  --shadow-glow-blue: 0 0 20px rgba(2, 132, 199, 0.15);
+  --shadow-glow: 0 0 20px rgba(47, 160, 132, 0.2);
+  --shadow-glow-green: 0 0 25px rgba(111, 207, 151, 0.25);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.04);
@@ -77,14 +77,14 @@
 
   /* ── Buttons ── */
   .btn-primary {
-    @apply bg-cta hover:bg-red-700 text-white px-8 py-4 rounded-xl
+    @apply bg-cta hover:bg-[#1A5F51] text-[#EEEEEE] px-8 py-4 rounded-xl
            transition-all duration-300 font-semibold shadow-glow hover:shadow-cta/30
            active:scale-[0.97] flex items-center justify-center gap-2
            uppercase tracking-[0.15em] text-[11px] cursor-pointer;
   }
 
   .btn-outline {
-    @apply border border-primary/10 hover:border-cta/50 hover:bg-cta/5
+    @apply border border-primary/20 hover:border-cta/50 hover:bg-cta/5
            text-primary px-8 py-4 rounded-xl transition-all duration-300
            font-semibold active:scale-[0.97] flex items-center justify-center gap-2
            uppercase tracking-[0.15em] text-[11px] cursor-pointer;
@@ -132,7 +132,7 @@
   .badge-neutral {
     @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full
            text-[9px] uppercase tracking-[0.2em] font-bold
-           bg-slate-100 text-slate-600 border border-slate-200;
+           bg-slate-200/50 text-slate-600 border border-slate-300;
   }
 
   /* ── Stat card ── */
