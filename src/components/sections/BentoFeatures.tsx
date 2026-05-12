@@ -36,7 +36,12 @@ const features = [
 
 const BentoFeatures: React.FC = () => {
   return (
-    <section className="section-padding bg-background relative overflow-hidden">
+    <section className="pb-24 lg:pb-32 pt-16 lg:pt-20 bg-background relative overflow-hidden">
+      {/* Decorative Cloudy Blobs at Top */}
+      <div className="absolute top-0 left-0 w-full h-40 pointer-events-none overflow-hidden">
+        <div className="absolute top-[-10%] left-[30%] w-[35%] h-[70%] bg-accent/[0.04] rounded-full blur-[70px]" />
+        <div className="absolute top-[-15%] right-[25%] w-[45%] h-[90%] bg-cta/[0.03] rounded-full blur-[90px]" />
+      </div>
       <div className="container mx-auto px-6 md:px-10">
         <SectionHeader
           eyebrow="Why Velora"

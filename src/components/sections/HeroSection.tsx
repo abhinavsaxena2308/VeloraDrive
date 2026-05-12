@@ -131,6 +131,14 @@ const HeroSection: React.FC = () => {
           <ChevronDown size={14} className="text-primary/20" />
         </motion.div>
       </motion.div>
+      {/* ═══ CLOUDY TRANSITION — BOTTOM ═══ */}
+      <div className="absolute bottom-0 left-0 w-full h-32 pointer-events-none z-[15]">
+        <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-background via-background/95 to-transparent" />
+        {/* Subtle cloudy blobs */}
+        <div className="absolute bottom-[-10%] left-[10%] w-[40%] h-[80%] bg-accent/[0.12] rounded-full blur-[100px]" />
+        <div className="absolute bottom-[-15%] right-[5%] w-[50%] h-[100%] bg-cta/[0.08] rounded-full blur-[120px]" />
+        <div className="absolute bottom-[10%] left-[40%] w-[30%] h-[60%] bg-white/40 rounded-full blur-[80px]" />
+      </div>
     </section>
   );
 };
