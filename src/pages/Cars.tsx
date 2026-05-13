@@ -40,11 +40,12 @@ const Cars: React.FC = () => {
   const maxPrice = Math.max(...cars.map(c => c.price));
 
   return (
-    <div className="page-container bg-slate-50/30">
+    <div className="page-container">
       <Helmet>
         <title>The Fleet | Velora Drive Discovery</title>
         <meta name="description" content="Discover our curated collection of supercars, luxury SUVs, and executive sedans. Real-time availability and transparent pricing." />
       </Helmet>
+      
       <div className="container mx-auto px-6 md:px-10">
         <SectionHeader 
           eyebrow="Our Fleet" 
@@ -53,152 +54,168 @@ const Cars: React.FC = () => {
           description="Meticulously curated selection of the world's most exclusive vehicles — from track-ready monsters to executive suites on wheels." 
         />
 
-        {/* Filter Bar */}
-        <div className="flex flex-col gap-6 mb-10">
-          <div className="flex flex-col lg:flex-row gap-5 items-stretch lg:items-center justify-between bg-white p-4 md:p-6 rounded-2xl border border-border shadow-sm">
-            {/* Category chips */}
-            <div className="flex gap-2.5 overflow-x-auto no-scrollbar pb-2 lg:pb-0">
-              {carCategories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`px-5 py-2.5 rounded-lg text-[10px] font-semibold uppercase tracking-[0.15em] transition-all duration-300 border whitespace-nowrap cursor-pointer ${
-                    activeCategory === cat
-                      ? 'bg-cta border-cta text-white shadow-glow'
-                      : 'bg-slate-50 border-border text-text-muted hover:border-primary/20 hover:text-primary'
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
+        {/* Mobile Filter Toggle */}
+        <div className="lg:hidden flex items-center justify-between mb-8 p-4 bg-white rounded-2xl border border-border shadow-sm">
+          <span className="text-[10px] uppercase tracking-widest font-bold text-text-muted">
+            {filteredCars.length} Cars Available
+          </span>
+          <button 
+            onClick={() => setShowFilters(!showFilters)}
+            className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl text-[10px] font-bold uppercase tracking-widest"
+          >
+            <SlidersHorizontal size={14} />
+            Filters
+          </button>
+        </div>
 
-            {/* Search + Sort + Advanced Toggle */}
-            <div className="flex flex-wrap gap-3 w-full lg:w-auto">
-              <div className="relative flex-1 min-w-[200px]">
-                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-text-muted/50" size={15} />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search brand or model..."
-                  className="input-field pl-10 py-3 text-xs w-full"
-                />
-              </div>
-              
-              <div className="relative">
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value as SortOption)}
-                  className="input-field py-3 pl-4 pr-10 text-xs appearance-none cursor-pointer min-w-[160px] bg-white border border-border rounded-xl"
-                >
-                  <option value="popular">Most Popular</option>
-                  <option value="price-low">Price: Low to High</option>
-                  <option value="price-high">Price: High to Low</option>
-                  <option value="rating">Highest Rated</option>
-                </select>
-                <ChevronDown size={14} className="absolute right-4 top-1/2 -translate-y-1/2 text-text-muted/50 pointer-events-none" />
+        <div className="flex flex-col lg:flex-row gap-10 mt-12">
+          {/* Left Sidebar - Filters */}
+          <aside className={`w-full lg:w-72 shrink-0 ${showFilters ? 'block' : 'hidden lg:block'}`}>
+            <div className="sticky top-32 space-y-8">
+              {/* Search Block */}
+              <div>
+                <h4 className="text-[10px] uppercase tracking-[0.3em] text-text-muted/60 font-bold mb-4">Search</h4>
+                <div className="relative">
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted/40" size={16} />
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Brand or model..."
+                    className="w-full bg-white border border-border rounded-xl pl-11 pr-4 py-3.5 text-xs focus:outline-none focus:border-cta/50 transition-all shadow-sm"
+                  />
+                </div>
               </div>
 
-              <button 
-                onClick={() => setShowFilters(!showFilters)}
-                className={`flex items-center gap-2 px-4 py-3 rounded-xl border transition-all cursor-pointer ${
-                  showFilters ? 'bg-primary text-white border-primary' : 'bg-white border-border text-primary hover:bg-slate-50'
-                }`}
-              >
-                <SlidersHorizontal size={15} />
-                <span className="text-[10px] font-bold uppercase tracking-wider">Filters</span>
-              </button>
-            </div>
-          </div>
+              {/* Categories Block */}
+              <div>
+                <h4 className="text-[10px] uppercase tracking-[0.3em] text-text-muted/60 font-bold mb-4">Categories</h4>
+                <div className="flex flex-col gap-2">
+                  {carCategories.map((cat) => (
+                    <button
+                      key={cat}
+                      onClick={() => setActiveCategory(cat)}
+                      className={`flex items-center justify-between px-4 py-3 rounded-xl text-[11px] font-semibold uppercase tracking-wider transition-all duration-300 border cursor-pointer ${
+                        activeCategory === cat
+                          ? 'bg-cta border-cta text-white shadow-glow'
+                          : 'bg-white border-border text-text-muted hover:border-cta/30 hover:text-primary'
+                      }`}
+                    >
+                      <span>{cat}</span>
+                      {activeCategory === cat && <motion.div layoutId="activeCat" className="w-1.5 h-1.5 bg-white rounded-full" />}
+                    </button>
+                  ))}
+                </div>
+              </div>
 
-          {/* Advanced Filters (Price Slider etc.) */}
-          <AnimatePresence>
-            {showFilters && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                className="overflow-hidden bg-white rounded-2xl border border-border shadow-sm"
-              >
-                <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {/* Price Range */}
-                  <div className="flex flex-col gap-4">
-                    <div className="flex justify-between items-center">
-                      <span className="text-[10px] font-bold uppercase tracking-widest text-primary">Price Range (Daily)</span>
-                      <span className="text-[11px] font-bold text-cta">₹{priceRange[0]} - ₹{priceRange[1]}</span>
-                    </div>
-                    <div className="px-2">
-                      <input
-                        type="range"
-                        min="0"
-                        max={maxPrice}
-                        step="500"
-                        value={priceRange[1]}
-                        onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
-                        className="w-full h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-cta"
-                      />
-                      <div className="flex justify-between mt-2 text-[9px] text-text-muted font-medium">
-                        <span>₹0</span>
-                        <span>₹{maxPrice.toLocaleString()}</span>
-                      </div>
-                    </div>
+              {/* Price Range Block */}
+              <div className="p-6 bg-white rounded-2xl border border-border shadow-sm">
+                <h4 className="text-[10px] uppercase tracking-[0.3em] text-text-muted/60 font-bold mb-6">Price Range</h4>
+                <div className="space-y-6">
+                  <div className="flex justify-between items-center">
+                    <span className="text-[11px] font-bold text-primary italic">Daily Rate</span>
+                    <span className="text-[12px] font-bold text-cta">₹{priceRange[1].toLocaleString()}</span>
                   </div>
-
-                  {/* Active Filters Summary */}
-                  <div className="flex flex-wrap items-end gap-2 lg:col-span-2">
-                    {(activeCategory !== 'All' || searchQuery || priceRange[1] < maxPrice) && (
-                      <button 
-                        onClick={() => {
-                          setActiveCategory('All');
-                          setSearchQuery('');
-                          setPriceRange([0, maxPrice]);
-                        }}
-                        className="text-[10px] font-bold text-cta flex items-center gap-1.5 hover:underline cursor-pointer mb-2"
-                      >
-                        <X size={12} />
-                        Clear All Filters
-                      </button>
-                    )}
+                  <div className="relative h-1.5 bg-slate-100 rounded-full">
+                    <div 
+                      className="absolute top-0 left-0 h-full bg-cta rounded-full" 
+                      style={{ width: `${(priceRange[1] / maxPrice) * 100}%` }}
+                    />
+                    <input
+                      type="range"
+                      min="0"
+                      max={maxPrice}
+                      step="500"
+                      value={priceRange[1]}
+                      onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
+                      className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer accent-cta"
+                    />
+                  </div>
+                  <div className="flex justify-between text-[9px] text-text-muted/60 font-medium">
+                    <span>₹0</span>
+                    <span>₹{maxPrice.toLocaleString()}</span>
                   </div>
                 </div>
+              </div>
+
+              {/* Reset Filters */}
+              {(activeCategory !== 'All' || searchQuery || priceRange[1] < maxPrice) && (
+                <button 
+                  onClick={() => {
+                    setActiveCategory('All');
+                    setSearchQuery('');
+                    setPriceRange([0, maxPrice]);
+                  }}
+                  className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl border border-dashed border-cta/30 text-cta text-[10px] font-bold uppercase tracking-widest hover:bg-cta/5 transition-colors cursor-pointer"
+                >
+                  <X size={14} />
+                  Clear All Filters
+                </button>
+              )}
+            </div>
+          </aside>
+
+          {/* Main Content Area */}
+          <main className="flex-1">
+            {/* Toolbar: Results + Sort */}
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-10 bg-white/50 backdrop-blur-md p-4 rounded-2xl border border-white/50 shadow-sm">
+              <span className="hidden sm:block text-[10px] uppercase tracking-[0.25em] text-text-muted font-bold">
+                Showing <span className="text-cta">{filteredCars.length}</span> Masterpieces
+              </span>
+              
+              <div className="flex items-center gap-3 w-full sm:w-auto">
+                <span className="text-[10px] uppercase tracking-wider text-text-muted/40 font-bold whitespace-nowrap">Sort By</span>
+                <div className="relative flex-1 sm:flex-initial">
+                  <select
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value as SortOption)}
+                    className="w-full bg-white border border-border rounded-xl py-2.5 pl-4 pr-10 text-[11px] font-bold text-primary appearance-none cursor-pointer focus:outline-none focus:border-cta/30 transition-all min-w-[160px]"
+                  >
+                    <option value="popular">Most Popular</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="rating">Highest Rated</option>
+                  </select>
+                  <ChevronDown size={14} className="absolute right-4 top-1/2 -translate-y-1/2 text-text-muted/40 pointer-events-none" />
+                </div>
+              </div>
+            </div>
+
+            {/* Cars Grid */}
+            {filteredCars.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mb-20">
+                <AnimatePresence mode="popLayout">
+                  {filteredCars.map((car, i) => (
+                    <CarCard key={car.id} car={car} index={i} />
+                  ))}
+                </AnimatePresence>
+              </div>
+            ) : (
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-center py-32 bg-white rounded-3xl border border-dashed border-border mb-20"
+              >
+                <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Search size={32} className="text-text-muted/20" />
+                </div>
+                <h3 className="text-2xl font-heading font-bold text-primary mb-3 italic">No matches in our fleet</h3>
+                <p className="text-text-muted text-sm font-light max-w-xs mx-auto">Try adjusting your filters or search terms to find your perfect drive.</p>
+                <button 
+                  onClick={() => { setActiveCategory('All'); setSearchQuery(''); setPriceRange([0, maxPrice]); }} 
+                  className="btn-outline mt-10 px-10 py-4 cursor-pointer"
+                >
+                  Reset All Filters
+                </button>
               </motion.div>
             )}
-          </AnimatePresence>
+          </main>
         </div>
-
-        {/* Results count */}
-        <div className="mb-8 flex justify-between items-center">
-          <span className="text-[10px] uppercase tracking-[0.2em] text-text-muted font-semibold">
-            Showing {filteredCars.length} exclusive vehicle{filteredCars.length !== 1 ? 's' : ''}
-          </span>
-        </div>
-
-        {/* Cars Grid */}
-        {filteredCars.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-            {filteredCars.map((car, i) => (
-              <CarCard key={car.id} car={car} index={i} />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-32 bg-white rounded-3xl border border-dashed border-border mb-20">
-            <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Search size={24} className="text-text-muted/30" />
-            </div>
-            <h3 className="text-xl font-heading font-bold text-primary mb-2 italic">No matches found</h3>
-            <p className="text-text-muted text-sm font-light max-w-xs mx-auto">Try adjusting your filters or search terms to find your perfect drive.</p>
-            <button 
-              onClick={() => { setActiveCategory('All'); setSearchQuery(''); setPriceRange([0, maxPrice]); }} 
-              className="btn-outline mt-8 px-8 py-3 cursor-pointer"
-            >
-              Reset All
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );
 };
 
 export default Cars;
+
+
