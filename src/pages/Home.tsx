@@ -1,14 +1,18 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import HeroSection from '../components/sections/HeroSection';
 import BentoFeatures from '../components/sections/BentoFeatures';
 import FleetShowcase from '../components/sections/FleetShowcase';
 import StatsSection from '../components/sections/StatsSection';
 import TestimonialsSection from '../components/sections/TestimonialsSection';
+import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
   return (
     <div className="flex flex-col bg-background overflow-x-hidden">
+      <Helmet>
+        <title>Velora Drive | Premium Luxury Car Rentals</title>
+        <meta name="description" content="Experience the ultimate in automotive luxury. Rent the world's finest supercars and luxury sedans with Velora Drive. Elite fleet, 24/7 concierge." />
+      </Helmet>
       <HeroSection />
       <BentoFeatures />
       <FleetShowcase />
