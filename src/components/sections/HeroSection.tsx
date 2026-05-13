@@ -33,14 +33,14 @@ const HeroSection: React.FC = () => {
         <div className="absolute top-0 right-0 w-[70%] h-[70%] bg-gradient-to-bl from-[#F2B76D]/15 via-transparent to-transparent blur-[120px]" />
         <div className="absolute bottom-0 left-0 w-[50%] h-[50%] bg-gradient-to-tr from-cta/10 via-transparent to-transparent blur-[100px]" />
         
-        {/* Bottom to Top Shadow for Features Visibility */}
-        <div className="absolute bottom-0 left-0 w-full h-[25%] bg-gradient-to-t from-[#FAF7F2] via-[#FAF7F2]/70 to-transparent z-10" />
+        {/* Bottom Readability Shadow */}
+        <div className="absolute bottom-0 left-0 w-full h-[45%] bg-gradient-to-t from-black/40 via-black/10 to-transparent z-10" />
       </div>
 
       <div className="container mx-auto px-6 md:px-10 relative z-10 flex flex-col items-center md:items-start flex-1">
         
         {/* ── Header Content ── */}
-        <div className="w-full flex flex-col items-center md:items-start mt-auto">
+        <div className="w-full flex flex-col items-center md:items-start mt-auto md:mt-0">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -76,8 +76,8 @@ const HeroSection: React.FC = () => {
           </motion.p>
         </div>
 
-        {/* ── Search Bar Area (With Availability Indicator Integrated for Mobile) ── */}
-        <div className="w-full max-w-md  lg:max-w-sm mt-auto mb-10 md:mt-0 md:mb-12 flex flex-col items-center md:items-start">
+        {/* ── Search Bar Area ── */}
+        <div className="w-full max-w-md lg:max-w-sm mt-auto mb-10 md:mt-0 md:mb-12 flex flex-col items-center md:items-start">
           {/* Availability Indicator */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -97,29 +97,26 @@ const HeroSection: React.FC = () => {
         {/* ── Responsive Spacer (Mobile/Tablet Only) ── */}
         <div className="flex-1 min-h-[40px] lg:hidden" />
 
-        {/* ── Footer Features (Compact Row) ── */}
+        {/* ── Footer Features ── */}
         <div className="w-full mt-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
-            className="grid grid-cols-3 gap-1 md:gap-3 w-full pt-4 border-t border-[#E5D8C8]/60"
+            className="grid grid-cols-3 gap-1 md:gap-3 w-full pt-4"
           >
             {FEATURES.map((f, i) => (
               <div key={i} className="flex flex-col items-center px-1 relative group">
-                {/* Vertical divider */}
-                {i !== 0 && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[1px] h-6 bg-[#E5D8C8]/50" />}
-                
-                {/* Icon Circle (Smaller) */}
-                <div className="w-6 h-6 md:w-9 md:h-9 rounded-full bg-white/50 backdrop-blur-md border border-[#E5D8C8]/40 flex items-center justify-center text-cta mb-1.5 md:mb-2 transition-transform duration-300 group-hover:scale-110 shadow-sm">
-                  <f.icon size={12} className="md:w-4 md:h-4" />
+                {/* Icon Circle (Orange BG, White Icon) */}
+                <div className="w-6 h-6 md:w-9 md:h-9 rounded-full bg-cta flex items-center justify-center text-white mb-1.5 md:mb-2 transition-all duration-300 group-hover:scale-110 shadow-[0_5px_15px_rgba(225,145,58,0.2)]">
+                  <f.icon size={11} className="md:w-4 md:h-4" />
                 </div>
 
-                {/* Text Content (Tightened) */}
-                <h3 className="text-[8px] md:text-[11px] font-bold text-[#4A3728] uppercase tracking-wider text-center mb-0.5">
+                {/* Text Content (White Text Globally) */}
+                <h3 className="text-[8px] md:text-[11px] font-bold text-white uppercase tracking-wider text-center mb-0.5 drop-shadow-sm">
                   {f.label}
                 </h3>
-                <p className="text-[7px] md:text-[9px] text-[#8B6A3A] font-medium text-center leading-tight max-w-[70px] md:max-w-none opacity-80">
+                <p className="text-[7px] md:text-[9px] text-white/80 font-medium text-center leading-tight max-w-[80px] md:max-w-none drop-shadow-sm">
                   {f.desc}
                 </p>
               </div>

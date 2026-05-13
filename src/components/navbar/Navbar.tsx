@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronRight, User } from 'lucide-react';
+import logo from '../../assets/logo.png';
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -39,18 +40,12 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto px-6 md:px-10 flex justify-between items-center">
 
         {/* ── Logo ── */}
-        <Link to="/" className="flex items-center gap-3 group">
-          <div className="w-8 h-8 bg-cta rounded-lg flex items-center justify-center shadow-glow group-hover:rotate-6 transition-transform duration-300">
-            <span className="text-white font-black text-lg leading-none">V</span>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-primary font-heading font-bold text-lg tracking-tight leading-none">
-              VELORA
-            </span>
-            <span className="text-[7px] uppercase tracking-[0.35em] text-text-muted font-semibold">
-              Drive Beyond Ordinary
-            </span>
-          </div>
+        <Link to="/" className="flex items-center group">
+          <img 
+            src={logo} 
+            alt="Velora Drive" 
+            className="h-8 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          />
         </Link>
 
         {/* ── Desktop Navigation ── */}

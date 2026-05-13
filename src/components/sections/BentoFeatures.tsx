@@ -44,7 +44,7 @@ const BentoFeatures: React.FC = () => {
       </div>
       <div className="container mx-auto px-6 md:px-10">
         <SectionHeader
-          eyebrow="Why Velora"
+          eyebrow="Why Velora"  
           title="THE VELORA"
           highlight="STANDARD"
           description="Excellence is not an option, it's our baseline. Discover the details that make every journey extraordinary."
@@ -58,9 +58,8 @@ const BentoFeatures: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
-              className={`glass-card p-8 lg:p-10 flex flex-col ${
-                feat.large ? 'justify-end' : feat.span ? 'justify-between' : 'justify-center items-center text-center'
-              } group relative overflow-hidden ${feat.span}`}
+              className={`glass-card p-8 lg:p-10 flex flex-col ${feat.large ? 'justify-end' : feat.span ? 'justify-between' : 'justify-center items-center text-center'
+                } group relative overflow-hidden ${feat.span}`}
             >
               {/* Icon */}
               <div className={`${feat.large ? 'absolute top-10 left-10' : feat.span ? '' : 'mb-4'} w-12 h-12 bg-cta/10 rounded-xl flex items-center justify-center text-cta group-hover:scale-110 transition-transform duration-300`}>
@@ -69,9 +68,8 @@ const BentoFeatures: React.FC = () => {
 
               {/* Content */}
               <div className={feat.large ? 'relative z-10' : ''}>
-                <h3 className={`font-heading font-bold italic uppercase mb-2 text-primary ${
-                  feat.large ? 'text-2xl lg:text-3xl' : feat.span ? 'text-xl' : 'text-sm tracking-widest'
-                }`}>
+                <h3 className={`font-heading font-bold italic uppercase mb-2 text-primary ${feat.large ? 'text-2xl lg:text-3xl' : feat.span ? 'text-xl' : 'text-sm tracking-widest'
+                  }`}>
                   {feat.title}
                 </h3>
                 <p className={`text-text-muted leading-relaxed ${feat.large ? 'text-sm max-w-sm' : 'text-xs'}`}>
