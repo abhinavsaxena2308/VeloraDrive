@@ -5,8 +5,8 @@ import { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
 import Lenis from 'lenis';
 import CustomCursor from './components/ui/CustomCursor';
-import WhatsAppButton from './components/ui/WhatsAppButton';
-import ChatbotUI from './components/ui/ChatbotUI';
+// import WhatsAppButton from './components/ui/WhatsAppButton';
+// import ChatbotUI from './components/ui/ChatbotUI';
 
 function App() {
   useEffect(() => {

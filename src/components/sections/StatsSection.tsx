@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import SectionHeader from '../shared/SectionHeader';
 
 const stats = [
   { val: '2,400+', label: 'Successful Rentals' },
