@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Star, Fuel, Users, Settings2 } from 'lucide-react';
+import { ArrowRight, Car as CarIcon } from 'lucide-react';
 import type { Car } from '../../data/cars';
 
 interface CarCardProps {
@@ -10,66 +10,58 @@ interface CarCardProps {
 }
 
 const CarCard: React.FC<CarCardProps> = ({ car, index = 0 }) => {
+  // Extracting brand from name (assuming first word is brand)
+  const [brand, ...modelParts] = car.name.split(' ');
+  const model = modelParts.join(' ');
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.08, duration: 0.4 }}
-      className="glass-card overflow-hidden group flex flex-col"
+      transition={{ delay: index * 0.05, duration: 0.5 }}
+      className="bg-white rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden group flex flex-col"
     >
-      {/* Image */}
-      <div className="relative h-56 overflow-hidden">
+      {/* Car Image Area */}
+      <div className="relative h-60 p-6 flex items-center justify-center bg-slate-50/50">
         <img
           src={car.image}
           alt={car.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-        <span className="absolute top-4 right-4 badge-cta">{car.type}</span>
         {!car.available && (
-          <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-            <span className="text-white/80 font-bold text-sm uppercase tracking-widest">Unavailable</span>
+          <div className="absolute top-4 right-4 bg-red-500 text-white text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">
+            Unavailable
           </div>
         )}
       </div>
 
-      {/* Content */}
-      <div className="p-6 flex flex-col flex-1">
-        <div className="flex justify-between items-start mb-4">
-          <div>
-            <h3 className="text-lg font-heading font-bold italic mb-1">{car.name}</h3>
-            <div className="flex items-center gap-1">
-              <Star size={12} className="text-cta fill-cta" />
-              <span className="text-primary text-xs font-semibold">{car.rating}</span>
-              <span className="text-text-muted/60 text-xs ml-1">({car.reviews})</span>
+      {/* Details Area */}
+      <div className="p-8 pt-2">
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-cta/10 flex items-center justify-center">
+              <CarIcon size={20} className="text-cta" />
             </div>
+            <span className="text-primary font-bold text-lg tracking-tight">{brand}</span>
           </div>
-          <div className="text-right">
-            <span className="text-xl font-bold text-primary">₹{car.price.toLocaleString()}</span>
-            <span className="block text-[9px] uppercase tracking-widest text-text-muted/60 font-semibold">/ day</span>
-          </div>
+          <span className="text-primary font-heading font-bold italic text-xl">{model}</span>
         </div>
 
-        {/* Specs row */}
-        <div className="grid grid-cols-3 gap-3 mb-6">
-          {[
-            { icon: Fuel, label: car.fuel },
-            { icon: Users, label: `${car.seats} Seats` },
-            { icon: Settings2, label: car.transmission },
-          ].map((spec, i) => (
-            <div key={i} className="text-center py-2.5 rounded-xl bg-slate-50 border border-border group-hover:border-cta/10 transition-colors">
-              <spec.icon size={14} className="mx-auto mb-1.5 text-cta" />
-              <span className="text-[9px] text-text-muted uppercase font-semibold tracking-wider">{spec.label}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Actions */}
-        <div className="flex gap-3 mt-auto">
-          <Link to={`/cars/${car.id}`} className="btn-outline flex-1 py-3 text-[10px]">Details</Link>
-          <Link to={`/cars/${car.id}`} className="btn-primary flex-1 py-3 text-[10px]">Book Now</Link>
+        <div className="flex items-center justify-between border-t border-slate-50 pt-6">
+          <div className="flex flex-col">
+            <span className="text-[10px] uppercase tracking-widest text-text-muted/40 font-bold mb-1">Starting From</span>
+            <span className="text-xl font-bold text-primary">₹{car.price.toLocaleString()} <span className="text-xs text-text-muted font-normal">/day</span></span>
+          </div>
+          
+          <Link 
+            to={`/cars/${car.id}`} 
+            className="flex items-center gap-2 text-primary hover:text-cta transition-colors text-sm font-bold uppercase tracking-wider group/link cursor-pointer"
+          >
+            <span>View Details</span>
+            <ArrowRight size={16} className="group-hover/link:translate-x-1 transition-transform" />
+          </Link>
         </div>
       </div>
     </motion.div>
@@ -77,3 +69,5 @@ const CarCard: React.FC<CarCardProps> = ({ car, index = 0 }) => {
 };
 
 export default CarCard;
+
+

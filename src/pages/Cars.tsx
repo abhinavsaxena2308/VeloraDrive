@@ -47,12 +47,25 @@ const Cars: React.FC = () => {
       </Helmet>
       
       <div className="container mx-auto px-6 md:px-10">
-        <SectionHeader 
-          eyebrow="Our Fleet" 
-          title="BROWSE" 
-          highlight="COLLECTION" 
-          description="Meticulously curated selection of the world's most exclusive vehicles — from track-ready monsters to executive suites on wheels." 
-        />
+        <div className="text-center mb-16 relative pt-12">
+          {/* Decorative Dots inspired by reference */}
+          <div className="flex justify-center gap-2 mb-4">
+            <div className="w-2 h-2 rounded-full bg-primary/20" />
+            <div className="w-3 h-3 rounded-full bg-primary/40 -mt-1" />
+            <div className="w-2 h-2 rounded-full bg-primary/20" />
+          </div>
+          
+          <h1 className="text-5xl md:text-6xl font-heading font-bold text-primary italic mb-4 relative inline-block">
+            Our Fleets
+            <div className="absolute -top-2 -right-4 flex gap-1">
+              <div className="w-2 h-2 rounded-full bg-cta" />
+              <div className="w-4 h-4 rounded-full bg-primary/10" />
+            </div>
+          </h1>
+          <p className="text-text-muted/60 text-lg font-light tracking-wide max-w-2xl mx-auto">
+            Choose from <span className="text-primary font-bold">Wide Range</span> of our Self-Drive Cars
+          </p>
+        </div>
 
         {/* Mobile Filter Toggle */}
         <div className="lg:hidden flex items-center justify-between mb-8 p-4 bg-white rounded-2xl border border-border shadow-sm">
