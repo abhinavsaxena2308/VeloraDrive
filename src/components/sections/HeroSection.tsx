@@ -33,7 +33,7 @@ const HeroSection: React.FC = () => {
         <div className="absolute top-0 right-0 w-[70%] h-[70%] bg-gradient-to-bl from-[#F2B76D]/15 via-transparent to-transparent blur-[120px]" />
         <div className="absolute bottom-0 left-0 w-[50%] h-[50%] bg-gradient-to-tr from-cta/10 via-transparent to-transparent blur-[100px]" />
         
-        {/* Bottom Readability Shadow */}
+        {/* Bottom Readability Shadow (Darker for white text contrast) */}
         <div className="absolute bottom-0 left-0 w-full h-[45%] bg-gradient-to-t from-black/40 via-black/10 to-transparent z-10" />
       </div>
 
@@ -77,7 +77,7 @@ const HeroSection: React.FC = () => {
         </div>
 
         {/* ── Search Bar Area ── */}
-        <div className="w-full max-w-md lg:max-w-sm mt-auto mb-10 md:mt-0 md:mb-12 flex flex-col items-center md:items-start">
+        <div className="w-full max-w-md lg:max-w-sm mt-8 md:mt-12 mb-10 md:mb-12 flex flex-col items-center md:items-start">
           {/* Availability Indicator */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -95,7 +95,7 @@ const HeroSection: React.FC = () => {
         </div>
 
         {/* ── Responsive Spacer (Mobile/Tablet Only) ── */}
-        <div className="flex-1 min-h-[40px] lg:hidden" />
+        <div className="flex-1 min-h-[20px] lg:hidden" />
 
         {/* ── Footer Features ── */}
         <div className="w-full mt-auto">
